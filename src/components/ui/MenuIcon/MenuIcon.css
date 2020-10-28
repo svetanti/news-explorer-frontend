@@ -1,0 +1,95 @@
+.menu-icon {
+  display: none;
+}
+
+.menu-icon_white span,
+.menu-icon_white::after {
+  background-color: var(--main-bg-color);
+}
+
+.menu-icon_dark span,
+.menu-icon_dark::after {
+  background-color: var(--main-text-color);
+}
+
+.menu-icon_opened span,
+.menu-icon_opened::after {
+  background-color: var(--main-bg-color);
+}
+
+@media screen and (max-width: 680px) {
+  .menu-icon {
+    width: 16px;
+    height: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    margin: 5px 0 0 auto;
+    cursor: pointer;
+    outline: none;
+  }
+}
+
+.menu-icon::after,
+.menu-icon span {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  transition: all .3s ease-in-out;
+}
+
+@keyframes toCross1 {
+  from {
+    transform: translateY(0) rotate(0) scaleX(1);
+  }
+  to {
+    transform: translateY(160%) rotate(45deg) scaleX(1.3);
+  }
+}
+
+@keyframes toCross2 {
+  from {
+    transform: translateY(0) rotate(0) scaleX(1);
+  }
+  to {
+    transform: translateY(-160%) rotate(-45deg) scaleX(1.3);
+  }
+}
+
+.menu-icon_opened::after {
+  animation: toCross2 ease-in-out .3s forwards;
+}
+
+.menu-icon_opened span {
+  animation: toCross1 ease-in-out .3s forwards;
+}
+
+@keyframes toSandwich1 {
+  from {
+    transform: translateY(160%) rotate(45deg) scaleX(1.3);
+  }
+  to {
+    transform: translateY(0) rotate(0) scaleX(1);
+  }
+}
+
+@keyframes toSandwich2 {
+  from {
+    transform: translateY(-160%) rotate(-45deg) scaleX(1.3);
+  }
+  to {
+    transform: translateY(0) rotate(0) scaleX(1);
+  }
+}
+
+.menu-icon_closed::after {
+  animation: toSandwich2 ease-in-out .3s forwards;
+}
+
+.menu-icon_closed span {
+  animation: toSandwich1 ease-in-out .3s forwards;
+}

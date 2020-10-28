@@ -1,0 +1,30 @@
+.saved-news {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  color: var(--main-text-color);
+}
+
+.saved-news::after {
+  content: '';
+  position: absolute;
+  top: 80px;
+  left: 0;
+  border-bottom: 1px solid var(--secondary-text-color);
+  height: 0px;
+  width: 100%;
+  z-index: -1;
+}
+
+@media screen and (max-width: 768px) {
+  .saved-news::after {
+    top: 66px;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .saved-news::after {
+    top: 56px;
+  }
+}

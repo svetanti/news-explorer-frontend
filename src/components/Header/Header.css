@@ -1,0 +1,126 @@
+.header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  max-width: 1232px;
+  height: 80px;
+  padding: 0;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.header__button {
+  max-width: 176px;
+  height: 48px;
+  background-color: transparent;
+}
+
+.header__button:hover {
+  opacity: 0.9;
+}
+
+.header__button_white {
+  color: var(--main-bg-color);
+  border: 1px solid var(--main-bg-color);
+}
+
+.header__button_dark {
+  color: var(--main-text-color);
+  border: 1px solid var(--main-text-color);
+}
+
+.header__button-text {
+  display: block;
+  max-width: 138px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.header__menu-icon:after,
+.header__menu-icon span {
+  background-color: var(--main-bg-color);
+}
+
+@media screen and (max-width: 1312px) {
+  .header {
+    padding: 0 40px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    height: 66px;
+  }
+
+  .header__button {
+    height: 40px;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .header {
+    width: 90%;
+    height: 56px;
+    padding: 0;
+  }
+
+  .header__logo {
+    font-size: 16px;
+  }
+
+  .header_mobile {
+    width: 100%;
+    height: fit-content;
+    padding: 0 5%;
+    display: grid;
+    grid-template-columns: repeat(2, min-content);
+    grid-template-rows: 56px repeat(2, min-content);
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--main-text-color);
+    border-radius: 0 0 16px 16px;
+    z-index: 10;
+  }
+
+  .header_mobile::after {
+    content: '';
+    width: 100%;
+    height: 0;
+    position: absolute;
+    top: 56px;
+    left: 0;
+    border-bottom: 1px solid var(--main-bg-color);
+    opacity: 0.2;
+  }
+
+  .header__nav_mobile {
+    grid-column: 1/3;
+    display: grid;
+    padding: 16px 0 0 0;
+    margin: 0;
+  }
+
+  .header__button {
+    display: none;
+  }
+
+  .header__button_mobile {
+    width: 100%;
+    max-width: 100%;
+    grid-column: 1/3;
+    grid-row: 3;
+    display: flex;
+    justify-content: center;
+    height: 56px;
+    margin: 22px 0 24px;
+  }
+
+  .header__button-text {
+    max-width: 80%;
+  }
+}
