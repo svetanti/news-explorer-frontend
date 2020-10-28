@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/news-explorer-frontend/static/css/main.f2fe405d.chunk.css",
-    "main.js": "/news-explorer-frontend/static/js/main.10cce116.chunk.js",
-    "main.js.map": "/news-explorer-frontend/static/js/main.10cce116.chunk.js.map",
-    "runtime-main.js": "/news-explorer-frontend/static/js/runtime-main.0fc9bfae.js",
-    "runtime-main.js.map": "/news-explorer-frontend/static/js/runtime-main.0fc9bfae.js.map",
-    "static/js/2.c4b16f25.chunk.js": "/news-explorer-frontend/static/js/2.c4b16f25.chunk.js",
-    "static/js/2.c4b16f25.chunk.js.map": "/news-explorer-frontend/static/js/2.c4b16f25.chunk.js.map",
-    "index.html": "/news-explorer-frontend/index.html",
-    "precache-manifest.4dc40b7d7c89d63c65a1778261e22d68.js": "/news-explorer-frontend/precache-manifest.4dc40b7d7c89d63c65a1778261e22d68.js",
-    "service-worker.js": "/news-explorer-frontend/service-worker.js",
-    "static/css/main.f2fe405d.chunk.css.map": "/news-explorer-frontend/static/css/main.f2fe405d.chunk.css.map",
-    "static/js/2.c4b16f25.chunk.js.LICENSE.txt": "/news-explorer-frontend/static/js/2.c4b16f25.chunk.js.LICENSE.txt",
-    "static/media/index.css": "/news-explorer-frontend/static/media/sourcesanspro-regular.49d8d828.woff",
-    "static/media/fb.svg": "/news-explorer-frontend/static/media/fb.4b12ed39.svg",
-    "static/media/github.svg": "/news-explorer-frontend/static/media/github.f734cc7f.svg"
+    "main.css": "/static/css/main.879c7deb.chunk.css",
+    "main.js": "/static/js/main.dacb7edc.chunk.js",
+    "main.js.map": "/static/js/main.dacb7edc.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.18fc895e.js",
+    "runtime-main.js.map": "/static/js/runtime-main.18fc895e.js.map",
+    "static/js/2.c4b16f25.chunk.js": "/static/js/2.c4b16f25.chunk.js",
+    "static/js/2.c4b16f25.chunk.js.map": "/static/js/2.c4b16f25.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.962aaba70b3f9b11c5e72a3c4315307d.js": "/precache-manifest.962aaba70b3f9b11c5e72a3c4315307d.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.879c7deb.chunk.css.map": "/static/css/main.879c7deb.chunk.css.map",
+    "static/js/2.c4b16f25.chunk.js.LICENSE.txt": "/static/js/2.c4b16f25.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/static/media/sourcesanspro-regular.49d8d828.woff",
+    "static/media/fb.svg": "/static/media/fb.4b12ed39.svg",
+    "static/media/github.svg": "/static/media/github.f734cc7f.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.0fc9bfae.js",
+    "static/js/runtime-main.18fc895e.js",
     "static/js/2.c4b16f25.chunk.js",
-    "static/css/main.f2fe405d.chunk.css",
-    "static/js/main.10cce116.chunk.js"
+    "static/css/main.879c7deb.chunk.css",
+    "static/js/main.dacb7edc.chunk.js"
   ]
 }
