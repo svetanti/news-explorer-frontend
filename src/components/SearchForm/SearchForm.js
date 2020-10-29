@@ -18,6 +18,7 @@ export default function SearchForm() {
         <Input
           name='search'
           type='text'
+          required={true}
           {...searchField}
           placeholder='Введите тему новости'
           inputFieldClassName='search__input-field' />

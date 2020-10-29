@@ -8,9 +8,8 @@ import Footer from '../Footer/Footer';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
-
-// Временные карточки, пока не подгружаются с API
-import temporaryNews from '../../utils/temporaryNews.json';
+import { Api } from '../../utils/NewsApi';
+import { apiOptions } from '../../utils/options';
 
 export default function App() {
   const [isMenuOpened, setMenuOpened] = useState(false);
@@ -23,7 +22,18 @@ export default function App() {
   const [isTooltipOpen, setTooltipOpen] = useState(false);
   const [currentRow, setCurrentRow] = useState(0);
   const [disabled, setDisabled] = useState(true);
-  const [news, setNews] = useState(temporaryNews.articles);
+  const [news, setNews] = useState([]);
+
+  React.useEffect(() => {
+    const api = new Api('веб', apiOptions);
+    api
+      .getNews()
+      .then((news) => {
+        setNews(news.articles);
+      })
+      .catch((err) => console.log(`Ошибка при загрузке новостей: ${err}`));
+  }, []);
+
 
   // Временный юзернейм
   const [userName, setUserName] = useState('Жак-Ив Кусь');
