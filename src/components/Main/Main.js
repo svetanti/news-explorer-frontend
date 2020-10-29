@@ -7,6 +7,7 @@ import Button from '../ui/Button/Button';
 
 export default function Main(props) {
   const {
+    onSearch,
     isLoggedIn,
     isLoading,
     isSaved,
@@ -21,7 +22,8 @@ export default function Main(props) {
 
   return (
     <div className='main'>
-      <SearchForm />
+      <SearchForm
+        onSearch={onSearch} />
       {isLoading && (<Preloader />)}
       {news &&
         < div className='main__news-container'>

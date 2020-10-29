@@ -32,13 +32,11 @@ export default function Input(props) {
         className={`input__field ${inputFieldClassName}`}
         placeholder={placeholder}
       ></input>
-      { name !== 'search' &&
-        < span
-          className={`input__error ${!isValid && 'input__error_active'}`}
-          id={`${name}-error`}
-        >
-          {errorMessage}
-        </span>}
+      <span
+        className={`input__error ${name}__input-error ${!isValid && `${name}__input-error_active`}`}
+        id={`${name}-error`}>
+        {errorMessage}
+      </span>
     </label >
   )
 }

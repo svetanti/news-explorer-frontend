@@ -24,17 +24,6 @@ export default function App() {
   const [disabled, setDisabled] = useState(true);
   const [news, setNews] = useState([]);
 
-  React.useEffect(() => {
-    const api = new Api('веб', apiOptions);
-    api
-      .getNews()
-      .then((news) => {
-        setNews(news.articles);
-      })
-      .catch((err) => console.log(`Ошибка при загрузке новостей: ${err}`));
-  }, []);
-
-
   // Временный юзернейм
   const [userName, setUserName] = useState('Жак-Ив Кусь');
 
@@ -93,6 +82,18 @@ export default function App() {
     setLoginOpen(true);
   };
 
+  function handleNewsSearch(searchRequest) {
+    setLoading(true);
+    const api = new Api(searchRequest, apiOptions);
+    api
+      .getNews()
+      .then((news) => {
+        setNews(news.articles);
+        setLoading(false);
+      })
+      .catch((err) => console.log(`Ошибка при загрузке новостей: ${err}`));
+  }
+
   return (
     <div className='app'>
       <Header
@@ -105,6 +106,7 @@ export default function App() {
       <Switch>
         <Route exact path='/'>
           <Main
+            onSearch={handleNewsSearch}
             isLoggedIn={isLoggedIn}
             isLoading={isLoading}
             isResult={isResult}
