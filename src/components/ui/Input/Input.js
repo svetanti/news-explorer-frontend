@@ -4,6 +4,7 @@ export default function Input(props) {
 
   const {
     name,
+    formName,
     value,
     type,
     minLength,
@@ -19,9 +20,9 @@ export default function Input(props) {
   } = props;
 
   return (
-    <label className={`input ${inputLabelClassName}`} htmlFor={name}>{label}
+    <label className={`input ${inputLabelClassName}`} htmlFor={`${name}_${formName}`}>{label}
       <input
-        id={name}
+        id={`${name}_${formName}`}
         type={type}
         value={value}
         minLength={minLength}

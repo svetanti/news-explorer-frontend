@@ -23,6 +23,7 @@ export default function Register(props) {
       <Input
         label='Email'
         name='email'
+        formName='reg'
         minLength='6'
         maxLength='30'
         type='email'
@@ -34,6 +35,7 @@ export default function Register(props) {
       <Input
         label='Пароль'
         name='password'
+        formName='reg'
         minLength='8'
         maxLength='30'
         type='password'
@@ -45,6 +47,7 @@ export default function Register(props) {
       <Input
         label='Имя'
         name='name'
+        formName='reg'
         minLength='2'
         maxLength='30'
         type='text'

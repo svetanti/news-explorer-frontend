@@ -22,6 +22,7 @@ export default function Login(props) {
       <Input
         label='Email'
         name='email'
+        formName='log'
         type='email'
         minLength='6'
         maxLength='30'
@@ -33,6 +34,7 @@ export default function Login(props) {
       <Input
         label='Пароль'
         name='password'
+        formName='log'
         type='password'
         minLength='8'
         maxLength='30'
