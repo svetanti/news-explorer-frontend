@@ -1,0 +1,266 @@
+{
+  "status": "ok",
+  "totalResults": 515,
+  "articles": [
+    {
+      "source": {
+        "id": null,
+        "name": "Habr.com"
+      },
+      "author": "vdsina_m",
+      "title": "[Перевод] Blacklight — инспектор конфиденциальности веб-сайтов",
+      "description": "Blacklight — это инспектор конфиденциальности веб-сайтов, выполняющий проверку в реальном времени.\n\nЭтот инструмент эмулирует способы наблюдения за пользователем, просматривающим веб-страницы. Пользователи вводят в Blacklight нужный URL, инспектор переходит н…",
+      "url": "https://habr.com/ru/company/vdsina/blog/520914/#post-content-body",
+      "urlToImage": "https://habrastorage.org/webt/fa/mv/co/famvco-hrihox3wsa5as8-e3p9m.jpeg?v=1",
+      "publishedAt": "2020-09-28T07:09:15Z",
+      "content": "Blacklight -, .\r\n, -. Blacklight URL, -, .\r\nBlacklight - headless- ( ), , The Markup. , , , .\r\nBlacklight :\r\n<ul><li></li><li></li><li></li><li></li><li> Canvas</li><li> Facebook</li><li>«Remarketing… [+4141 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Lifehacker.ru"
+      },
+      "author": "Виктор Подволоцкий",
+      "title": "В мобильных приложениях Google появятся «веб-истории»",
+      "description": "Самый простой способ получить нужную информацию, не открывая сайты.",
+      "url": "https://lifehacker.ru/google-veb-istorii/",
+      "urlToImage": "https://cdn.lifehacker.ru/wp-content/uploads/2020/10/Snimok-ekrana-2020-10-07-093151_1602052377-1024x512.jpg",
+      "publishedAt": "2020-10-07T06:46:46Z",
+      "content": ", .Google Web Stories «-» . Discover («»), .\r\nDiscover . , -. , .\r\nGoogle . , - WordPress, MakeStories NewsroomAI. Google.\r\n Web Stories , , Google ."
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Habr.com"
+      },
+      "author": "asyncawait",
+      "title": "Создаём установщик веб-приложения Python, включающий Apache, Django и PostgreSQL для ОС Windows",
+      "description": "Данный пост является продолжением первой части статьи на Хабре, где было подробно рассказано о развертывании Django стека на MS Windows. Далее будет представлена пошаговая инструкция по созданию инсталлятора, который будет автоматизировать процесс установки с…",
+      "url": "https://habr.com/ru/post/525028/#post-content-body",
+      "urlToImage": "https://habr.com/share/publication/525028/b186fc9385c5d667e14a021008b9159c/?v=1",
+      "publishedAt": "2020-10-26T04:52:23Z",
+      "content": ", Django MS Windows. , , .., -&gt; -&gt; .\r\n, :\r\n<ol><li> .</li><li> .</li><li> Python Windows.</li><li>, , .</li><li> Apache PostgreSQL, .</li><li> , , .</li></ol>Inno Setup, .. , . Wix ini, , xml. … [+11000 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Habr.com"
+      },
+      "author": "alconost",
+      "title": "[Перевод] Каждый дизайнер желает знать… какая память бывает и в чем ее несовершенство",
+      "description": "Случалось ли вам забывать пароль, который только что придумали? Попадались ли вам мобильные и веб-приложения, пользоваться которыми было легко и удобно с первой же минуты? У каждого из нас ежедневно случаются «провалы в памяти» той или иной степени. И дизайне…",
+      "url": "https://habr.com/ru/company/alconost/blog/521734/#post-content-body",
+      "urlToImage": "https://habrastorage.org/getpro/habr/upload_files/37e/f24/2b6/37ef242b6611166b2ed0e597bdd7c120.jpg?v=1",
+      "publishedAt": "2020-10-02T09:16:23Z",
+      "content": ", ? -, ? « » . , .\r\n, . , , .\r\n .\r\n  : .\r\n  , .\r\n ,   , , .   , .\r\n  . 1956 . «» 7 , 7  (- 2).\r\n , 7  3  1  70 , : .\r\n, .   : , - , , , , .\r\n. . , . , , «». (, 2014;   \r\n.)\r\n<ul><li>. ,   ,   , . , (… [+1065 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Habr.com"
+      },
+      "author": "skillfactory_school",
+      "title": "[Перевод] Источники для специалиста в Data Science",
+      "description": "В этом посте делимся с вами подборкой источников полезной информации о Data Science от сооснователя и CTO DAGsHub — сообщества и веб-платформы для контроля версий данных и совместной работы дата-сайентистов и инженеров по машинному обучению. В подборку попали…",
+      "url": "https://habr.com/ru/company/skillfactory/blog/524722/#post-content-body",
+      "urlToImage": "https://habrastorage.org/webt/1v/kr/wt/1vkrwtzqollhppg7wihaqg4kxcm.jpeg?v=1",
+      "publishedAt": "2020-10-23T11:08:56Z",
+      "content": "Data Science CTO DAGsHub - - . , , , , , . . :, , , . Data Science, , . , !\r\nYouTube-, , . , . , .\r\nYouTube-, . , , , . , . , , , , .. ( ) .\r\n:\r\n , . Distill , .\r\nDistill . , . , , , Data Science. , … [+885 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Habr.com"
+      },
+      "author": "TilekSamiev",
+      "title": "[Перевод] Китай запустил новый веб-браузер Tuber, который может подключаться к FB, Twitter, Google без использования VPN",
+      "description": "В Китае теперь есть инструмент, который позволяет пользователям получать доступ к YouTube, Facebook, Twitter, Instagram, Google и другим интернет-сервисам, которые давно были запрещены в стране. Читать дальше →",
+      "url": "https://habr.com/ru/post/522858/#post-content-body",
+      "urlToImage": "https://habr.com/share/publication/522858/5c1d5d742a866672aebaa2077a3ec418/?v=1",
+      "publishedAt": "2020-10-10T11:12:39Z",
+      "content": ", YouTube, Facebook, Twitter, Instagram, Google -, .\r\nTuber Android , iOS. YouTube , -.\r\n «» , , . , TechCrunch, YouTube , «» « », .\r\n. , . « », « » , , , , .\r\n, «» VPN , , , .\r\n, , , , , . ( ), Tube… [+312 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Habr.com"
+      },
+      "author": "ifap",
+      "title": "Почему российские сайты не будут соответствовать ГОСТу по доступности",
+      "description": "Закончив перевод Руководства по обеспечению доступности веб-контента (WCAG) 2.1 на русский язык, захотелось поговорить о языкознании, правоприменении, и поднять вынесенный в заголовок вопрос: почему российские сайты могут соответствовать WCAG, разработанным н…",
+      "url": "https://habr.com/ru/post/525100/#post-content-body",
+      "urlToImage": "https://hsto.org/webt/q2/ha/lo/q2halomcdxrifuqghgxop0bsz78.png?v=1",
+      "publishedAt": "2020-10-26T12:42:45Z",
+      "content": "- (WCAG) 2.1 , , , : WCAG, , , ?\r\n1 ( ) 52872-2019 «- , - . , . », 52872-2012 «-. ».\r\nPDF, JPG, . , , : « Web Content Accessibility Guidelines (WCAG) 2.1», «» .\r\n, . , 22=4, 1000 , « &lt;&gt; - », .\r… [+1453 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Habr.com"
+      },
+      "author": "vdsina_m",
+      "title": "Неисповедимы пути контента или про CDN замолвим слово",
+      "description": "Дисклеймер:\nДанная статья не несет в себе сведений ранее неизвестных читателям, знакомым с понятием CDN, а носит характер обзора технологии\nПервая веб-страница появилась в 1990 году и имела размер в считанные байты. С тех пор контент масштабируется как качест…",
+      "url": "https://habr.com/ru/company/vdsina/blog/522936/#post-content-body",
+      "urlToImage": "https://habrastorage.org/webt/eo/b6/2p/eob62pdnv4p8iqsulvd3_acg8ei.jpeg?v=1",
+      "publishedAt": "2020-10-16T08:00:04Z",
+      "content": ":, CDN, \r\n- 1990 . , . - , - . - ? , Content Delivery Network CDN.«» . , -, 4-5 . , , , . (CDN), , . , . \r\n. CDN , - . (), . , - . , .. 90-. , , . , ( 640 ). , . , . \r\n90- - , . CDN, , . . ( ) CDN , … [+1419 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Habr.com"
+      },
+      "author": "ru_vds",
+      "title": "[Перевод] Mitsubishi VisiTel: общение в Zoom в стиле 1980-х",
+      "description": "За окном 2020 год. Удалённая работа — это уже совершенно нормально. Десятилетия рекламы ведущих телекоммуникационных компаний наконец сделали своё дело — научили мою маму совершать видеозвонки. Правда, события последних месяцев, вызвавшие неожиданный интерес …",
+      "url": "https://habr.com/ru/company/ruvds/blog/522174/#post-content-body",
+      "urlToImage": "https://habr.com/share/publication/522174/26e451706303a6ae6cd060dcb04e0e6a/?v=1",
+      "publishedAt": "2020-10-06T09:15:01Z",
+      "content": "2020 . . . , , , -. , . . -. Mitsubishi VisiTel!Mitsubishi VisiTel\r\n1988 , , , , . $399 ? « », 1988, Mitsubishi VisiTel . . Gadget Guru WSMV, , VisiTel, : « , ?».\r\n, , 30 . , , .\r\n, , VisiTel - . . ,… [+1731 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Habr.com"
+      },
+      "author": "a-talentex",
+      "title": "[Перевод] История о физическом удалении 300 миллионов записей в MySQL",
+      "description": "Введение\nПривет. Я ningenMe, веб-разработчик.\nКак сказано в названии, моя история — это история о физическом удалении 300 миллионов записей в MySQL.\nЯ заинтересовался этим, поэтому решил сделать памятку (инструкцию).\n\nНачало — Alert\nВ пакетном сервере, которы…",
+      "url": "https://habr.com/ru/post/521226/#post-content-body",
+      "urlToImage": "https://habr.com/share/publication/521226/874838bf6e36476a8bbbdb5159c0b431/?v=1",
+      "publishedAt": "2020-09-29T13:18:38Z",
+      "content": ". ningenMe, -., 300 MySQL., (). Alert\r\n, , , MySQL. 1 , 7 8 , alert \r\n, , . . , , , . hoge_table | 350'000'000 |\r\n350 . , , .12 000 000 . , select , . \r\nDB\r\n, , 400 000 . , , , , , , rotate .. , , . … [+602 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Habr.com"
+      },
+      "author": "vdsina_m",
+      "title": "[Перевод] Доля Firefox упала на 85%, однако доходы руководства Mozilla выросли на 400%",
+      "description": "Mozilla сейчас находится состоянии полного упадка: высокие накладные расходы, снижение доли пользователей Firefox, спорные источники прибыли, а теперь, в условиях уменьшения доходов, ещё и снижение затрат на разработку.\n\nНедавно Mozilla объявила о том, что ув…",
+      "url": "https://habr.com/ru/company/vdsina/blog/521248/#post-content-body",
+      "urlToImage": "https://habrastorage.org/webt/yy/2l/lw/yy2llwzyelp4v5vklkgf3r_wfhe.jpeg?v=1",
+      "publishedAt": "2020-09-30T06:20:02Z",
+      "content": "Mozilla : , Firefox, , , , .\r\nMozilla , 250 . , , . MDN ( -, , w3schools), Rust Firefox. , , Mozilla , , , , Mozilla, .\r\n Mozilla , .. Mozilla « » (royalties). Mozilla Firefox , , Firefox . Mozilla ,… [+1684 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Habr.com"
+      },
+      "author": "alexzfort",
+      "title": "Дайджест свежих материалов из мира фронтенда за последнюю неделю №434 (21 — 27 сентября 2020)",
+      "description": "Предлагаем вашему вниманию подборку с ссылками на новые материалы из области фронтенда и около него.   Медиа    |    Веб-разработка    |    CSS    |    JavaScrip...",
+      "url": "https://habr.com/ru/post/520890/#post-content-body",
+      "urlToImage": "https://habr.com/share/publication/520890/e6ca508b22aa951b868a9f727dbbbbd5/?v=1",
+      "publishedAt": "2020-09-27T20:07:41Z",
+      "content": "alexzfort 23:07\r\n .\r\n    |    -    |    CSS    |    JavaScript    |    \r\n« (18+)» #156 Styleguidist Cosmos CSSSR: Vue 3, PostCSS 8, TypeScript 4.1 Beta, Github CLI 1.0, moment.js, -\r\n 2: , , 3D - HTT… [+490 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "3dnews.ru"
+      },
+      "author": null,
+      "title": "Apple распрощалась с брендом Beats by Dr. Dre в преддверии анонса HomePod mini и наушников AirPods Studio",
+      "description": "Apple удалила веб-страницу продуктов Beats by Dr. Dre со своего веб-сайта в преддверии завтрашнего мероприятия по запуску новых продуктов. Вероятно, это связано с тем, что компания готовится представить уменьшенную и более доступную версию умной колонки HomeP…",
+      "url": "https://3dnews.ru/1022739/apple-rasproshchalas-s-brendom-beatsby-dr-dre-v-preddverii-anonsa-homepod-mini-i-naushnikovairpods-studio",
+      "urlToImage": "https://3dnews.ru/assets/external/illustrations/2020/10/12/1022739/436535435.jpg",
+      "publishedAt": "2020-10-12T12:46:00Z",
+      "content": "Apple - Beats by Dr. Dre - . , , HomePod AirPods Studio.\r\nmacrumors.com\r\nApple Terminal, Beats Apple. , , . Apple - Beats Apple. Beats Updater, Beats.\r\n , Apple - Beats -. , Apple Sonos, Bose Logitec… [+84 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Habr.com"
+      },
+      "author": "asyncawait",
+      "title": "[Из песочницы] Поднимаем Django стек на MS Windows",
+      "description": "В данной статье будет представлена подробная инструкция по установке и настройке программ Apache, Python и PostgreSQL для обеспечения работы Django проекта в ОС MS Windows. Django уже включает в себя упрощенный сервер разработки для локального тестирования ко…",
+      "url": "https://habr.com/ru/post/523842/#post-content-body",
+      "urlToImage": "https://habr.com/share/publication/523842/53f5d232cc46cab66a205523070418cf/?v=1",
+      "publishedAt": "2020-10-17T02:46:59Z",
+      "content": "Apache, Python PostgreSQL Django MS Windows. Django , , , -. mod_wsgi Apache .\r\n, MS Windows 10 32 . 32 64 . 64 64 , .\r\nDjango Severcart. , . C:\\severcart. .\r\nPython\r\nPython - Python. Windows 32- . 3… [+2499 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Habr.com"
+      },
+      "author": "sahsAGU",
+      "title": "Новейшая технология Microsoft, появившаяся в Azure AI, описывает изображения так же хорошо, как и люди",
+      "description": "Исследователи из Microsoft создали систему искусственного интеллекта, способную генерировать подписи к изображениям, которые во многих случаях оказываются более точными, чем описания, сделанные людьми. Этот прорыв стал важной вехой в стремлении Microsoft сдел…",
+      "url": "https://habr.com/ru/company/microsoft/blog/523966/#post-content-body",
+      "urlToImage": "https://habr.com/share/publication/523966/5dee456e7fd9a6a8e9a4ec69b477529c/?v=1",
+      "publishedAt": "2020-10-21T07:00:02Z",
+      "content": "Microsoft , , , , . Microsoft .« , », (Xuedong Huang), Microsoft Azure AI Cognitive Services ( ).\r\nComputer Vision  Azure Cognitive Services, Azure AI, . Seeing AI Microsoft Word Outlook Windows Mac,… [+650 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Habr.com"
+      },
+      "author": "ru_vds",
+      "title": "[Перевод] Слышали о языке Prolog?",
+      "description": "Prolog — это один из тех языков, которые программисты обычно изучают в самом начале карьеры (например — в школе или в институте). Его, правда, забывают почти сразу же после того, как изучили.\n\nПочему? Ну, лично я виню в этом индустрию разработки ПО. Я работаю…",
+      "url": "https://habr.com/ru/company/ruvds/blog/525014/#post-content-body",
+      "urlToImage": "https://habrastorage.org/webt/mo/td/tq/motdtqdbfedm7dgdjgbiuoohepw.png?v=1",
+      "publishedAt": "2020-10-27T13:14:01Z",
+      "content": "Prolog , ( ). , , , .? , . 17 . , - ( , -, ETL- ). , , Prolog.\r\n, . , . , , : « Prolog , ».\r\n, .\r\n, , . , , Prolog . . , «» (, , ). , , Prolog. , , . , .\r\n, , , - . . , , , . - , , - . ( «» ) . , , S… [+1480 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Habr.com"
+      },
+      "author": "xtreding",
+      "title": "История нашего open source: как мы сделали сервис аналитики на Go и выложили его в открытый доступ",
+      "description": "В настоящее время практически каждая компания в мире собирает статистику о действиях пользователя на web ресурсе. Мотивация понятна — компании хотят знать как используется их продукт/веб сайт и лучше понимать своих пользователей. Конечно на рынке существует б…",
+      "url": "https://habr.com/ru/company/ksense/blog/523464/#post-content-body",
+      "urlToImage": "https://habr.com/share/publication/523464/cce4a81e3049a4eb5aeb132fceb13b88/?v=1",
+      "publishedAt": "2020-10-15T10:30:33Z",
+      "content": "web . / . , ( Google Analytics) Customer Data Platform, ( Segment). , . EventNative open-source . O , , ( ), \r\n ?\r\n , \r\n. 2019 , API First Customer Data Platform kSense, (Facebook ads, Stripe, Salesf… [+3176 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "3dnews.ru"
+      },
+      "author": null,
+      "title": "Сервис Microsoft Outlook обрушился по всему миру",
+      "description": "В Сети появились сообщения о глобальном отключении сервиса электронной почты Microsoft Outlook. Сбой затронул веб-сервис Outlook, сайт Outlook.com, а также десктопные и мобильные приложения. Tom Warren / The Verge",
+      "url": "https://3dnews.ru/1021954",
+      "urlToImage": "https://3dnews.ru/assets/external/illustrations/2020/10/01/1021954/sm.hotmailhednew.0.750.jpg",
+      "publishedAt": "2020-10-01T09:06:00Z",
+      "content": "Microsoft Outlook. - Outlook, Outlook.com, .\r\nTom Warren / The Verge\r\n9:00 , Microsoft , . Outlook , Outlook.com .\r\n« , », — Microsoft. , , Microsoft. « , », — Microsoft 365 Status Twitter.\r\nMicrosof… [+93 chars]"
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Xakep.ru"
+      },
+      "author": "Мария Нефёдова",
+      "title": "Многофакторную аутентификацию TikTok можно обойти через сайт",
+      "description": "СМИ заметили, что на веб-версию TikTok не распространяется многофакторная аутентификация, недавно подключенная разработчиками для всех пользователей платформы. Более того, пользователей мобильной версии не уведомляют о том, что кто-то воспользовался веб-верси…",
+      "url": "https://xakep.ru/2020/09/28/tiktok-mfa/",
+      "urlToImage": "https://xakep.ru/wp-content/uploads/2020/09/323214/TikTok.jpg",
+      "publishedAt": "2020-09-28T16:30:19Z",
+      "content": "ZDNet, , , - TikTok  ­ ( SMS), .\r\n , , - ( , ), TikTok , .\r\n , - .   , , , , . , , .\r\n , TikTok - .  , TikTok , - .\r\n TikTok , . ZDNet , CAPTCHA, TikTok-."
+    },
+    {
+      "source": {
+        "id": null,
+        "name": "Vedomosti.ru"
+      },
+      "author": null,
+      "title": "Минюст предложил новый вариант дистанционного участия в судебных заседаниях",
+      "description": "Минюст России разработал законопроект, предполагающий возможность участия в судебных заседаниях по веб-конференции с использованием личных смартфонов и компьютеров, сообщили в пресс-службе министерства.",
+      "url": "https://www.vedomosti.ru/society/news/2020/10/19/843805-minyust-predlozhil-novii-variant-distantsionnogo-uchastiya-v-sudebnih-zasedaniyah",
+      "urlToImage": "https://sharing.vedomosti.ru/1603137328/vedomosti.ru/society/news/2020/10/19/843805-minyust-predlozhil-novii-variant-distantsionnogo-uchastiya-v-sudebnih-zasedaniyah.jpg",
+      "publishedAt": "2020-10-19T19:55:28Z",
+      "content": "«» (Vedomosti)   22 2006 . 7726576.\r\n- «». , () 77 77720 17 2020 .\r\nvedomosti.ru\r\n, , , , - .\r\nIP , cookie , \r\n© , 19992020"
+    }
+  ]
+}

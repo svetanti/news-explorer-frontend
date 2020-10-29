@@ -1,0 +1,25 @@
+.app {
+  --main-bg-color: #fff;
+  --secondary-bg-color: #f5f6f7;
+  --main-text-color: #1a1b22;
+  --secondary-text-color: #b6bcbf;
+  --button-blue: #2f71e5;
+  --button-blue-hover: #347eff;
+  --button-blue-active: #2a65cc;
+  --button-white-hover: #e8e8e9;
+  --button-disabled: #e6e8eb;
+  --box-shadow-color: rgba(20, 34, 44, 0.1);
+  --input-border-color: rgba(0, 0, 0, 0.2);
+  --black: #000;
+  --red: #ff0000;
+
+  --roboto: Roboto, Arial, Helvetica, sans-serif;
+  --roboto-slab: 'Roboto Slab', Georgia, 'Times New Roman', Times, serif;
+  --source-sans-pro: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+  --inter: 'Inter', Arial, Helvetica, sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}

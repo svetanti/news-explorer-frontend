@@ -1,0 +1,133 @@
+import React, { useEffect, useState } from 'react';
+import { Switch, Route, useLocation } from 'react-router-dom';
+import './App.css';
+import Header from '../Header/Header';
+import Main from '../Main/Main';
+import SavedNews from '../SavedNews/SavedNews';
+import Footer from '../Footer/Footer';
+import Login from '../Login/Login';
+import Register from '../Register/Register';
+import InfoTooltip from '../InfoTooltip/InfoTooltip';
+
+// Временные карточки, пока не подгружаются с API
+import temporaryNews from '../../utils/temporaryNews.json';
+
+export default function App() {
+  const [isMenuOpened, setMenuOpened] = useState(false);
+  const [isLoggedIn, setLoggedIn] = useState(true);
+  const [isLoading, setLoading] = useState(false);
+  const [isResult, setResult] = useState(true);
+  const [isSaved, setSaved] = useState(false);
+  const [isRegisterOpen, setRegisterOpen] = useState(false);
+  const [isLoginOpen, setLoginOpen] = useState(false);
+  const [isTooltipOpen, setTooltipOpen] = useState(false);
+  const [currentRow, setCurrentRow] = useState(0);
+  const [disabled, setDisabled] = useState(true);
+  const [news, setNews] = useState(temporaryNews.articles);
+
+  // Временный юзернейм
+  const [userName, setUserName] = useState('Жак-Ив Кусь');
+
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    function closeOnEsc(evt) {
+      if (evt.key === 'Escape' || evt.key === 'Esc') {
+        handlePopupsClose();
+      }
+    }
+    document.addEventListener("keyup", closeOnEsc);
+
+    return () => {
+      document.removeEventListener("keyup", closeOnEsc);
+    };
+  }, []);
+
+  function handleMenuOpen() {
+    setMenuOpened(!isMenuOpened);
+  };
+
+  function handleCardButtonClick() {
+    if (isLoggedIn) {
+      setSaved(!isSaved);
+    }
+  };
+
+  function handleShowMore() {
+    setCurrentRow(currentRow + 1);
+  }
+
+  function handleLoginPopupOpen() {
+    setLoginOpen(true);
+  }
+  function handleRegisterPopupOpen() {
+    setRegisterOpen(true);
+  }
+  function handleTooltipPopupOpen() {
+    setTooltipOpen(true);
+  }
+
+  function handlePopupsClose() {
+    setRegisterOpen(false);
+    setLoginOpen(false);
+    setTooltipOpen(false);
+  }
+
+  function handleSwitchToRegister() {
+    setLoginOpen(false);
+    setRegisterOpen(true);
+  };
+
+  function handleSwitchToLogin() {
+    setRegisterOpen(false);
+    setLoginOpen(true);
+  };
+
+  return (
+    <div className='app'>
+      <Header
+        isLoggedIn={isLoggedIn}
+        isMenuOpened={isMenuOpened}
+        onMenuOpen={handleMenuOpen}
+        userName={userName}
+        pathname={pathname}
+        onClick={handleLoginPopupOpen} />
+      <Switch>
+        <Route exact path='/'>
+          <Main
+            isLoggedIn={isLoggedIn}
+            isLoading={isLoading}
+            isResult={isResult}
+            isSaved={isSaved}
+            pathname={pathname}
+            handleCardButtonClick={handleCardButtonClick}
+            onShowMore={handleShowMore}
+            news={news}
+            currentRow={currentRow} />
+        </Route>
+        <Route path='/saved-news'>
+          <SavedNews
+            news={news}
+            pathname={pathname}
+            userName={userName} />
+        </Route>
+      </Switch>
+      <Footer />
+
+      <Register
+        isOpen={isRegisterOpen}
+        onClose={handlePopupsClose}
+        onChangeForm={handleSwitchToLogin}
+        disabled={disabled} />
+      <Login
+        isOpen={isLoginOpen}
+        onClose={handlePopupsClose}
+        onChangeForm={handleSwitchToRegister}
+        disabled={disabled} />
+      <InfoTooltip
+        isOpen={isTooltipOpen}
+        onClose={handlePopupsClose} />
+    </div >
+  );
+}
+

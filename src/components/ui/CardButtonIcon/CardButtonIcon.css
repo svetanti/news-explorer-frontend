@@ -1,0 +1,28 @@
+.card-button-icon {
+  margin: auto;
+  transition: all .7s ease;
+}
+
+.card-button-icon_saved {
+  fill: var(--button-blue);
+}
+
+button:hover .card-button-icon_saved {
+  fill: var(--button-blue-hover);
+}
+
+.card-button-icon_bookmark {
+  stroke: var(--secondary-text-color);
+}
+
+button:hover .card-button-icon_bookmark {
+  stroke: var(--main-text-color);
+}
+
+.card-button-icon_bin {
+  fill: var(--secondary-text-color);
+}
+
+button:hover .card-button-icon_bin {
+  fill: var(--main-text-color);
+}
