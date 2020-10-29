@@ -15,14 +15,13 @@ export default function App() {
   const [isMenuOpened, setMenuOpened] = useState(false);
   const [isLoggedIn, setLoggedIn] = useState(true);
   const [isLoading, setLoading] = useState(false);
-  const [isResult, setResult] = useState(true);
   const [isSaved, setSaved] = useState(false);
   const [isRegisterOpen, setRegisterOpen] = useState(false);
   const [isLoginOpen, setLoginOpen] = useState(false);
   const [isTooltipOpen, setTooltipOpen] = useState(false);
   const [currentRow, setCurrentRow] = useState(0);
   const [disabled, setDisabled] = useState(true);
-  const [news, setNews] = useState([]);
+  const [news, setNews] = useState();
 
   // Временный юзернейм
   const [userName, setUserName] = useState('Жак-Ив Кусь');
@@ -72,19 +71,19 @@ export default function App() {
     setTooltipOpen(false);
   }
 
-  function handleSwitchToRegister() {
-    setLoginOpen(false);
-    setRegisterOpen(true);
+  function handleTogglePopup() {
+    setLoginOpen(!isLoginOpen);
+    setRegisterOpen(!isRegisterOpen);
   };
 
-  function handleSwitchToLogin() {
-    setRegisterOpen(false);
-    setLoginOpen(true);
-  };
-
-  function handleNewsSearch(searchRequest) {
+  function handleNewsSearch(keyword, setErrorMessage) {
+    if (!keyword) {
+      setErrorMessage('Нужно ввести ключевое слово');
+      return;
+    }
     setLoading(true);
-    const api = new Api(searchRequest, apiOptions);
+    setNews();
+    const api = new Api(keyword, apiOptions);
     api
       .getNews()
       .then((news) => {
@@ -109,7 +108,6 @@ export default function App() {
             onSearch={handleNewsSearch}
             isLoggedIn={isLoggedIn}
             isLoading={isLoading}
-            isResult={isResult}
             isSaved={isSaved}
             pathname={pathname}
             handleCardButtonClick={handleCardButtonClick}
@@ -129,12 +127,12 @@ export default function App() {
       <Register
         isOpen={isRegisterOpen}
         onClose={handlePopupsClose}
-        onChangeForm={handleSwitchToLogin}
+        onChangeForm={handleTogglePopup}
         disabled={disabled} />
       <Login
         isOpen={isLoginOpen}
         onClose={handlePopupsClose}
-        onChangeForm={handleSwitchToRegister}
+        onChangeForm={handleTogglePopup}
         disabled={disabled} />
       <InfoTooltip
         isOpen={isTooltipOpen}

@@ -18,7 +18,7 @@ export default function Main(props) {
     currentRow } = props;
 
   const cardsPerRow = 3;
-  const newsToRender = news.slice(0, (currentRow + 1) * cardsPerRow);
+  const newsToRender = news && news.slice(0, (currentRow + 1) * cardsPerRow);
 
   return (
     <div className='main'>
@@ -26,7 +26,7 @@ export default function Main(props) {
         onSearch={onSearch} />
       {isLoading && (<Preloader />)}
       {news &&
-        < div className='main__news-container'>
+        <div className='main__news-container'>
           {
             news.length ?
               (<>
@@ -38,7 +38,8 @@ export default function Main(props) {
                   isSaved={isSaved}
                   handleCardButtonClick={handleCardButtonClick}
                   currentRow={currentRow} />
-                <Button buttonClassName='main__show-more' onClick={onShowMore}>Показать еще</Button>
+                {newsToRender.length !== news.length &&
+                  <Button buttonClassName='main__show-more' onClick={onShowMore}>Показать еще</Button>}
               </>)
               : (
                 <div className='main__not-found'>

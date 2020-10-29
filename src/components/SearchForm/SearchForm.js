@@ -11,10 +11,7 @@ export default function SearchForm(props) {
   function handleSubmit(evt) {
     const { value, setErrorMessage } = searchField;
     evt.preventDefault();
-    if (value) {
-      onSearch(value);
-    }
-    else setErrorMessage('Нужно ввести ключевое слово');
+    onSearch(value, setErrorMessage);
   };
 
   return (

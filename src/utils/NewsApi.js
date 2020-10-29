@@ -1,16 +1,15 @@
 export class Api {
-  constructor(request, options) {
-    this._request = request;
+  constructor(keyword, options) {
+    this._keyword = keyword;
     this._url = options.baseUrl;
     this._from = options.from;
     this._to = options.to;
     this._pageSize = options.pageSize;
-    this._apiKey = options.apiKey
     this._headers = options.headers;
   }
 
-  _sendRequest(request, parameters) {
-    return fetch(`${this._url}?q=${this._request}&${this._from}&${this._to}&${this._pageSize}&${this._apiKey}`,
+  _sendRequest(keyword, parameters) {
+    return fetch(`${this._url}?q=${this._keyword}&${this._from}&${this._to}&${this._pageSize}`,
       parameters)
       .then((res) => {
         if (res.ok) {
@@ -21,6 +20,6 @@ export class Api {
   }
 
   getNews() {
-    return this._sendRequest(this._request, { headers: this._headers });
+    return this._sendRequest(this._keyword, { headers: this._headers });
   }
 }
