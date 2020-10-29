@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Input from '../ui/Input/Input';
 import Button from '../ui/Button/Button';
+import { useFormWithValidation } from '../../utils/useFormWithValidation';
 
 export default function SearchForm() {
-  const [searchRequest, setSearchhRequest] = useState('');
-
-  function handleInputChange(evt) {
-    setSearchhRequest(evt.target.value);
-  }
+  const searchField = useFormWithValidation();
 
   return (
     <div className='search'>
@@ -20,9 +17,8 @@ export default function SearchForm() {
       <form className='search__form'>
         <Input
           name='search'
-          value={searchRequest || ''}
           type='text'
-          onChange={handleInputChange}
+          {...searchField}
           placeholder='Введите тему новости'
           inputFieldClassName='search__input-field' />
         <Button buttonClassName='search__button'>Искать</Button>

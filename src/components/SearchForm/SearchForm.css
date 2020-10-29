@@ -41,6 +41,10 @@
   border-radius: 100px;
 }
 
+.search__input-field:focus {
+  caret-color: var(--button-blue);
+}
+
 .search__button {
   width: 168px;
   background-color: var(--button-blue);
@@ -69,7 +73,7 @@
     line-height: 40px;
     margin: 0 0 16px 0;
   }
-  
+
   .search__form {
     height: 56px;
   }
@@ -85,7 +89,7 @@
     height: 480px;
     padding: 30px 0 32px;
   }
-  
+
   .search__form {
     flex-wrap: wrap;
     height: 128px;
