@@ -19,7 +19,8 @@ export default function Main(props) {
     isError } = props;
 
   const cardsPerRow = 3;
-  const newsToRender = news && news.slice(0, (currentRow + 1) * cardsPerRow);
+  const articles = news.articles;
+  const newsToRender = articles && articles.slice(0, (currentRow + 1) * cardsPerRow);
 
   return (
     <section className='main'>
@@ -28,7 +29,7 @@ export default function Main(props) {
         isLoading && (<Preloader />)
       }
       {
-        news &&
+        news.status === 'ok' &&
         <div className='main__news-container'>
           {
             news.length ? (<>

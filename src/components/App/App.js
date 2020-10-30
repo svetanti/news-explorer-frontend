@@ -21,7 +21,7 @@ export default function App() {
   const [isTooltipOpen, setTooltipOpen] = useState(false);
   const [currentRow, setCurrentRow] = useState(0);
   const [disabled, setDisabled] = useState(true);
-  const [news, setNews] = useState();
+  const [news, setNews] = useState([]);
   const [isSearchError, setSearchError] = useState(false);
 
   // Временный юзернейм
@@ -31,8 +31,8 @@ export default function App() {
 
   useEffect(() => {
     const localStorageNews = JSON.parse(localStorage.getItem('news'));
-    if (localStorageNews) {
-      setNews(localStorageNews.articles);
+    if (localStorageNews && localStorageNews.articles.length) {
+      setNews(localStorageNews);
     }
   }, []);
 
@@ -95,9 +95,10 @@ export default function App() {
     api
       .getNews()
       .then((news) => {
+        console.log(news);
         localStorage.setItem('news', JSON.stringify(news));
         setSearchError(false);
-        setNews(news.articles);
+        setNews(news);
         setLoading(false);
       })
       .catch((err) => {
