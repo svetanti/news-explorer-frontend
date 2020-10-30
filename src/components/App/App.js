@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import { Switch, Route, useLocation } from 'react-router-dom';
 import './App.css';
 import Header from '../Header/Header';
@@ -28,6 +28,13 @@ export default function App() {
   const [userName, setUserName] = useState('Жак-Ив Кусь');
 
   const { pathname } = useLocation();
+
+  useEffect(() => {
+    const localStorageNews = JSON.parse(localStorage.getItem('news'));
+    if (localStorageNews) {
+      setNews(localStorageNews.articles);
+    }
+  }, []);
 
   useEffect(() => {
     function closeOnEsc(evt) {
@@ -88,6 +95,7 @@ export default function App() {
     api
       .getNews()
       .then((news) => {
+        localStorage.setItem('news', JSON.stringify(news));
         setSearchError(false);
         setNews(news.articles);
         setLoading(false);
