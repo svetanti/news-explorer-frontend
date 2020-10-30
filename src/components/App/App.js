@@ -22,6 +22,7 @@ export default function App() {
   const [currentRow, setCurrentRow] = useState(0);
   const [disabled, setDisabled] = useState(true);
   const [news, setNews] = useState();
+  const [isSearchError, setSearchError] = useState(false);
 
   // Временный юзернейм
   const [userName, setUserName] = useState('Жак-Ив Кусь');
@@ -87,10 +88,15 @@ export default function App() {
     api
       .getNews()
       .then((news) => {
+        setSearchError(false);
         setNews(news.articles);
         setLoading(false);
       })
-      .catch((err) => console.log(`Ошибка при загрузке новостей: ${err}`));
+      .catch((err) => {
+        console.log(`Ошибка при загрузке новостей: ${err}`);
+        setLoading(false);
+        setSearchError(true);
+      });
   }
 
   return (
@@ -108,6 +114,7 @@ export default function App() {
             onSearch={handleNewsSearch}
             isLoggedIn={isLoggedIn}
             isLoading={isLoading}
+            isError={isSearchError}
             isSaved={isSaved}
             pathname={pathname}
             handleCardButtonClick={handleCardButtonClick}

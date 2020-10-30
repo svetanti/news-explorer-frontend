@@ -28,6 +28,7 @@ export default function Register(props) {
         maxLength='30'
         type='email'
         required={true}
+        autoComplete='email'
         {...emailField}
         inputLabelClassName='popup__input-label'
         inputFieldClassName='popup__input'
@@ -40,6 +41,7 @@ export default function Register(props) {
         maxLength='30'
         type='password'
         required={true}
+        autoComplete='password'
         {...passwordField}
         inputLabelClassName='popup__input-label'
         inputFieldClassName='popup__input'

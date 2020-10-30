@@ -27,6 +27,7 @@ export default function Login(props) {
         minLength='6'
         maxLength='30'
         required={true}
+        autoComplete='email'
         {...emailField}
         inputLabelClassName='popup__input-label'
         inputFieldClassName='popup__input'
@@ -39,6 +40,7 @@ export default function Login(props) {
         minLength='8'
         maxLength='30'
         required={true}
+        autoComplete='password'
         {...passwordField}
         inputLabelClassName='popup__input-label'
         inputFieldClassName='popup__input'

@@ -10,6 +10,7 @@ export default function Input(props) {
     minLength,
     maxLength,
     required,
+    autoComplete,
     isValid,
     onChange,
     placeholder,
@@ -28,6 +29,7 @@ export default function Input(props) {
         minLength={minLength}
         maxLength={maxLength}
         required={required}
+        autoComplete={autoComplete}
         onChange={onChange}
         className={`input__field ${inputFieldClassName}`}
         placeholder={placeholder}

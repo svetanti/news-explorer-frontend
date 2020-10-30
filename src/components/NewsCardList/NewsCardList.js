@@ -11,7 +11,7 @@ export default function NewsCardList(props) {
   } = props;
 
   return (
-    <div className='news-card-list'>
+    <section className='news-card-list'>
       <ul className='news-card-list__wrapper'>
         {newsToRender.map((article, index) => (
           <NewsCard
@@ -23,6 +23,6 @@ export default function NewsCardList(props) {
             handleCardButtonClick={handleCardButtonClick} />
         ))}
       </ul>
-    </div>
+    </section>
   )
 }
