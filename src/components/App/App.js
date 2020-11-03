@@ -9,7 +9,8 @@ import Login from '../Login/Login';
 import Register from '../Register/Register';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import { Api } from '../../utils/NewsApi';
-import { apiOptions } from '../../utils/options';
+import { newsApiOptions } from '../../utils/options';
+import * as auth from '../../utils/MainApi';
 
 export default function App() {
   const [isMenuOpened, setMenuOpened] = useState(false);
@@ -23,11 +24,14 @@ export default function App() {
   const [disabled, setDisabled] = useState(true);
   const [news, setNews] = useState([]);
   const [isSearchError, setSearchError] = useState(false);
+  const [authError, setAuthError] = useState('');
 
   // Временный юзернейм
   const [userName, setUserName] = useState('Жак-Ив Кусь');
 
   const { pathname } = useLocation();
+
+  const escape = require('escape-html');
 
   useEffect(() => {
     const localStorageNews = JSON.parse(localStorage.getItem('news'));
@@ -91,7 +95,7 @@ export default function App() {
     }
     setLoading(true);
     setNews();
-    const api = new Api(keyword, apiOptions);
+    const api = new Api(keyword, newsApiOptions);
     api
       .getNews()
       .then((news) => {
@@ -107,6 +111,34 @@ export default function App() {
         setSearchError(true);
       });
   }
+
+  function handleRegister(email, password, name) {
+    auth.register(email, escape(password), name)
+      .then((res) => {
+        console.log(res);
+        setRegisterOpen(false);
+        setTooltipOpen(true);
+      })
+      .catch((err) => {
+        console.log(err.message);
+        setAuthError(err.message);
+      });
+  }
+
+
+  function handleLogin(email, password) {
+    auth.register(email, escape(password))
+      .then((res) => {
+        console.log(res);
+        setRegisterOpen(false);
+        setTooltipOpen(true);
+      })
+      .catch((err) => {
+        console.log(err.message);
+        setAuthError(err.message);
+      });
+  }
+
 
   return (
     <div className='app'>
@@ -144,12 +176,16 @@ export default function App() {
         isOpen={isRegisterOpen}
         onClose={handlePopupsClose}
         onChangeForm={handleTogglePopup}
-        disabled={disabled} />
+        disabled={disabled}
+        onRegister={handleRegister}
+        authError={authError} />
       <Login
         isOpen={isLoginOpen}
         onClose={handlePopupsClose}
         onChangeForm={handleTogglePopup}
-        disabled={disabled} />
+        disabled={disabled}
+        authError={authError}
+        onLogin={handleLogin} />
       <InfoTooltip
         isOpen={isTooltipOpen}
         onClose={handlePopupsClose} />

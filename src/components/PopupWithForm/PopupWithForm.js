@@ -10,7 +10,8 @@ export default function PopupWithForm(props) {
     onChangeForm,
     children,
     submitButtonText,
-    isFormValid
+    isFormValid,
+    authError
   } = props;
 
   return (
@@ -31,12 +32,15 @@ export default function PopupWithForm(props) {
           {children}
         </fieldset>
         {formName !== 'tooltip' &&
-          <Button
-            buttonClassName='popup__submit'
-            onClick={onSubmit}
-            disabled={isFormValid ? false : true}>
-            {submitButtonText}
-          </Button>
+          <>
+            <span className='popup__error'>{authError}</span>
+            <Button
+              buttonClassName='popup__submit'
+              onClick={onSubmit}
+              disabled={isFormValid ? false : true}>
+              {submitButtonText}
+            </Button>
+          </>
         }
         <span className='popup__subtitle'>{formName !== 'tooltip' && 'или '}
           <span className='popup__link' onClick={onChangeForm}>

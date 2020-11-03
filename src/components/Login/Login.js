@@ -4,10 +4,15 @@ import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import { useFormWithValidation } from '../../utils/useFormWithValidation';
 
 export default function Login(props) {
-  const { isOpen, onClose, onChangeForm, onLogin } = props;
+  const { isOpen, onClose, onChangeForm, onLogin, authError } = props;
 
   const emailField = useFormWithValidation();
   const passwordField = useFormWithValidation();
+
+  function handleLogin(evt) {
+    evt.preventDefault();
+    onLogin(emailField.value, passwordField.value);
+  }
 
   return (
     <PopupWithForm
@@ -16,7 +21,8 @@ export default function Login(props) {
       onClose={onClose}
       onChangeForm={onChangeForm}
       isFormValid={emailField.isValid && passwordField.isValid}
-      onSubmit={onLogin}
+      onSubmit={handleLogin}
+      authError={authError}
       submitButtonText='Войти'>
       <legend className='popup__heading'>Вход</legend>
       <Input
