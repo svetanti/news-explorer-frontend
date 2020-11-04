@@ -13,8 +13,8 @@ import { newsApiOptions } from '../../utils/options';
 import * as auth from '../../utils/MainApi';
 
 export default function App() {
-  const [isMenuOpened, setMenuOpened] = useState(false);
-  const [isLoggedIn, setLoggedIn] = useState(true);
+
+  const [isLoggedIn, setLoggedIn] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const [isSaved, setSaved] = useState(false);
   const [isRegisterOpen, setRegisterOpen] = useState(false);
@@ -26,8 +26,13 @@ export default function App() {
   const [isSearchError, setSearchError] = useState(false);
   const [authError, setAuthError] = useState('');
 
+
+  const [currentUser, setCurrentUser] = useState({});
+
+  const [isMenuOpened, setMenuOpened] = useState(false);
+
   // Временный юзернейм
-  const [userName, setUserName] = useState('Жак-Ив Кусь');
+  const [userName, setUserName] = useState('');
 
   const { pathname } = useLocation();
 
@@ -81,12 +86,20 @@ export default function App() {
     setRegisterOpen(false);
     setLoginOpen(false);
     setTooltipOpen(false);
+    setAuthError('');
   }
 
   function handleTogglePopup() {
+    setAuthError('');
     setLoginOpen(!isLoginOpen);
     setRegisterOpen(!isRegisterOpen);
   };
+
+  function handleOpenLogin() {
+    setAuthError('');
+    setTooltipOpen(false);
+    setLoginOpen(true);
+  }
 
   function handleNewsSearch(keyword, setErrorMessage) {
     if (!keyword) {
@@ -127,11 +140,20 @@ export default function App() {
 
 
   function handleLogin(email, password) {
-    auth.register(email, escape(password))
-      .then((res) => {
-        console.log(res);
-        setRegisterOpen(false);
-        setTooltipOpen(true);
+    setAuthError('');
+    auth.authorize(email, escape(password))
+      .then((data) => {
+        auth.getUserInfo(data)
+          .then((res) => {
+            setUserName(res.data.name);
+            setCurrentUser(res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+            setAuthError(err.message);
+          });
+        setLoggedIn(true);
+        setLoginOpen(false);
       })
       .catch((err) => {
         console.log(err.message);
@@ -188,8 +210,9 @@ export default function App() {
         onLogin={handleLogin} />
       <InfoTooltip
         isOpen={isTooltipOpen}
-        onClose={handlePopupsClose} />
-    </div >
+        onClose={handlePopupsClose}
+        onChangeForm={handleOpenLogin} />
+    </div>
   );
 }
 

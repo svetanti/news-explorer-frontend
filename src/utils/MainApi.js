@@ -28,7 +28,9 @@ export const authorize = (email, password) => fetch(`${BASE_URL}/signin`, {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
+    'Access-Control-Allow-Credentials': true,
   },
+  credentials: 'include',
   body: JSON.stringify({ email, password }),
 })
   .then((res) => {
