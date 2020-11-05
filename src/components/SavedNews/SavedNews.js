@@ -4,24 +4,23 @@ import NewsCardList from '../NewsCardList/NewsCardList';
 
 export default function SavedNews(props) {
   const {
-    news,
+    savedNews,
     userName,
     pathname,
     isLoggedIn,
-    isSaved,
-    handleCardButtonClick } = props;
+    onCardClick } = props;
 
   return (
     <div className='saved-news'>
       <SavedNewsHeader
-        news={news}
+        savedNews={savedNews}
         userName={userName} />
       <NewsCardList
-        newsToRender={news}
+        newsToRender={savedNews}
+        savedNews={savedNews}
         pathname={pathname}
         isLoggedIn={isLoggedIn}
-        isSaved={isSaved}
-        handleCardButtonClick={handleCardButtonClick} />
+        onCardClick={onCardClick} />
     </div >
   )
 }

@@ -2,9 +2,11 @@ import React from 'react';
 import CardButtonIcon from '../ui/CardButtonIcon/CardButtonIcon';
 
 export default function NewsCard(props) {
-  const { isLoggedIn, isSaved, handleCardButtonClick, pathname, article } = props;
+  const { isLoggedIn, onCardClick, pathname, article, savedNews } = props;
 
-  const { title, description, publishedAt, url, urlToImage, source } = article;
+  const { keyword, title, description, publishedAt, url, urlToImage, source } = article;
+
+  const isSaved = savedNews.some((i) => i.publishedAt === article.publishedAt && i.title === article.title);
 
   const options = {
     month: 'long',
@@ -16,14 +18,18 @@ export default function NewsCard(props) {
   const fullDate = dayAndMonth + ', ' + date.getFullYear();
 
   const tooltipText =
-    (!isLoggedIn && pathname === '/')
+    (!isLoggedIn)
       ? 'Войдите, чтобы сохранять статьи'
-      : 'Убрать из сохранённых';
+      : `${isSaved && 'Убрать из сохранённых'}`;
+
+  function handleCardButtonClick() {
+    onCardClick(article);
+  }
 
   return (
     <li className='card'>
       { pathname === '/saved-news' &&
-        < span className='card__element card__keyword'>Природа</span>
+        < span className='card__element card__keyword'>{keyword}</span>
       }
       <button
         type='button'
@@ -33,7 +39,8 @@ export default function NewsCard(props) {
           pathname={pathname}
           isSaved={isSaved} />
       </button>
-      <span className='card__element card__tooltip'>{tooltipText}</span>
+      { (isLoggedIn && isSaved) &&
+        < span className='card__element card__tooltip'>{tooltipText}</span>}
       <div className='card__img-wrapper'>
         <img
           src={urlToImage}
@@ -48,7 +55,7 @@ export default function NewsCard(props) {
           href={url}
           target='_blank'
           rel='noopener noreferrer'
-          className='card__source'>{source.name}</a>
+          className='card__source'>{pathname === '/' ? source.name : source}</a>
       </div>
     </li >
   )

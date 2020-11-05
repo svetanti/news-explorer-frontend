@@ -13,7 +13,7 @@ export const newsApiOptions = {
   headers: {
     'Authorization': '19a7ee150200415abfcf6899be597e77',
     'Content-Type': 'application/x-www-form-urlencoded',
-    
+
   },
 };
 

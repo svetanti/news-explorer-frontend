@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Switch, Route, useLocation } from 'react-router-dom';
 import './App.css';
 import Header from '../Header/Header';
@@ -8,11 +8,12 @@ import Footer from '../Footer/Footer';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
-import { Api } from '../../utils/NewsApi';
-import { newsApiOptions } from '../../utils/options';
-import * as auth from '../../utils/MainApi';
+import * as newsApi from '../../utils/NewsApi'
+import * as mainApi from '../../utils/MainApi';
 
 export default function App() {
+
+  const escape = require('escape-html');
 
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [isLoading, setLoading] = useState(false);
@@ -22,9 +23,15 @@ export default function App() {
   const [isTooltipOpen, setTooltipOpen] = useState(false);
   const [currentRow, setCurrentRow] = useState(0);
   const [disabled, setDisabled] = useState(true);
+
+
   const [news, setNews] = useState([]);
+  const [savedNews, setSavedNews] = useState([]);
+
+
   const [isSearchError, setSearchError] = useState(false);
   const [authError, setAuthError] = useState('');
+  const [isSearchOk, setSearchOk] = useState(false);
 
 
   const [currentUser, setCurrentUser] = useState({});
@@ -36,13 +43,37 @@ export default function App() {
 
   const { pathname } = useLocation();
 
-  const escape = require('escape-html');
+  useEffect(() => {
+    const jwt = localStorage.getItem('jwt');
+    if (jwt) {
+      mainApi.getUserInfo(jwt)
+        .then((res) => {
+          setLoggedIn(true);
+          setUserName(res.data.name);
+          setCurrentUser(res.data);
+        })
+        .catch(err => console.log(err));
+    }
+  }, []);
 
   useEffect(() => {
     const localStorageNews = JSON.parse(localStorage.getItem('news'));
-    if (localStorageNews && localStorageNews.articles.length) {
+    if (localStorageNews && localStorageNews.length) {
       setNews(localStorageNews);
+      setSearchOk(true);
     }
+  }, []);
+
+  useEffect(() => {
+    mainApi.getSavedNews()
+      .then((res) => {
+        return res.json();
+      })
+      .then((news) => {
+        console.log(news.data);
+        setSavedNews(news.data);
+      })
+      .catch(err => console.log(err));
   }, []);
 
   useEffect(() => {
@@ -70,24 +101,36 @@ export default function App() {
 
   function handleShowMore() {
     setCurrentRow(currentRow + 1);
-  }
+  };
 
   function handleLoginPopupOpen() {
     setLoginOpen(true);
-  }
+  };
+
   function handleRegisterPopupOpen() {
     setRegisterOpen(true);
-  }
+  };
+
   function handleTooltipPopupOpen() {
     setTooltipOpen(true);
-  }
+  };
+
+  function handleSignOut() {
+    setLoggedIn(false);
+    localStorage.removeItem('jwt');
+    setUserName('');
+  };
+
+  function handleAuth() {
+    isLoggedIn ? handleSignOut() : handleLoginPopupOpen();
+  };
 
   function handlePopupsClose() {
     setRegisterOpen(false);
     setLoginOpen(false);
     setTooltipOpen(false);
     setAuthError('');
-  }
+  };
 
   function handleTogglePopup() {
     setAuthError('');
@@ -99,7 +142,7 @@ export default function App() {
     setAuthError('');
     setTooltipOpen(false);
     setLoginOpen(true);
-  }
+  };
 
   function handleNewsSearch(keyword, setErrorMessage) {
     if (!keyword) {
@@ -107,12 +150,14 @@ export default function App() {
       return;
     }
     setLoading(true);
-    setNews();
-    const api = new Api(keyword, newsApiOptions);
-    api
-      .getNews()
-      .then((news) => {
-        console.log(news);
+    setSearchOk(false);
+    setNews([]);
+    setCurrentRow(0);
+    newsApi
+      .getNews(keyword)
+      .then((res) => {
+        setSearchOk(true);
+        const news = res.articles.map((item) => ({ ...item, keyword: keyword }));
         localStorage.setItem('news', JSON.stringify(news));
         setSearchError(false);
         setNews(news);
@@ -123,10 +168,10 @@ export default function App() {
         setLoading(false);
         setSearchError(true);
       });
-  }
+  };
 
   function handleRegister(email, password, name) {
-    auth.register(email, escape(password), name)
+    mainApi.register(email, escape(password), name)
       .then((res) => {
         console.log(res);
         setRegisterOpen(false);
@@ -136,14 +181,13 @@ export default function App() {
         console.log(err.message);
         setAuthError(err.message);
       });
-  }
-
+  };
 
   function handleLogin(email, password) {
     setAuthError('');
-    auth.authorize(email, escape(password))
+    mainApi.authorize(email, escape(password))
       .then((data) => {
-        auth.getUserInfo(data)
+        mainApi.getUserInfo(data)
           .then((res) => {
             setUserName(res.data.name);
             setCurrentUser(res.data);
@@ -159,8 +203,30 @@ export default function App() {
         console.log(err.message);
         setAuthError(err.message);
       });
+  };
+
+  function handleArticleClick(article) {
+    const saved = savedNews.find((i) => i.publishedAt === article.publishedAt && i.title === article.title);
+    if (!saved) {
+      mainApi.saveArticle(article)
+        .then((res) => {
+          return res.json();
+        })
+        .then(newArticle => {
+          setSavedNews([newArticle.data, ...savedNews]);
+          setSaved(true);
+        })
+        .catch((err) => console.log(err));
+      return;
+    }
+    handleDeleteArticle(saved);
   }
 
+  function handleDeleteArticle(article) {
+    mainApi.deleteArticle(article._id)
+      .then(() => setSavedNews(savedNews.filter((item) => item._id !== article._id)))
+      .catch((err) => console.log(`Ошибка при удалении карточки: ${err}`));
+  }
 
   return (
     <div className='app'>
@@ -170,7 +236,7 @@ export default function App() {
         onMenuOpen={handleMenuOpen}
         userName={userName}
         pathname={pathname}
-        onClick={handleLoginPopupOpen} />
+        onClick={handleAuth} />
       <Switch>
         <Route exact path='/'>
           <Main
@@ -178,18 +244,20 @@ export default function App() {
             isLoggedIn={isLoggedIn}
             isLoading={isLoading}
             isError={isSearchError}
-            isSaved={isSaved}
             pathname={pathname}
-            handleCardButtonClick={handleCardButtonClick}
+            onCardClick={handleArticleClick}
             onShowMore={handleShowMore}
+            isSearchOk={isSearchOk}
             news={news}
+            savedNews={savedNews}
             currentRow={currentRow} />
         </Route>
         <Route path='/saved-news'>
           <SavedNews
-            news={news}
+            savedNews={savedNews}
             pathname={pathname}
-            userName={userName} />
+            userName={userName}
+            onCardClick={handleDeleteArticle} />
         </Route>
       </Switch>
       <Footer />

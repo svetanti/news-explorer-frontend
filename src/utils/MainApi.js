@@ -66,3 +66,45 @@ export const getUserInfo = (token) => fetch(`${BASE_URL}/users/me`, {
     return res.json()
   })
   .then((data) => data);
+
+export const getSavedNews = () => {
+  return fetch(`${BASE_URL}/articles`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+    }
+  });
+}
+
+export const saveArticle = (article) => {
+  const { keyword, title, description, publishedAt, source, url, urlToImage } = article;
+  return fetch(`${BASE_URL}/articles`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+    },
+    credentials: 'include',
+    body: JSON.stringify({
+      keyword,
+      title,
+      description,
+      publishedAt,
+      source: source.name,
+      url,
+      urlToImage,
+    }),
+  })
+}
+
+export const deleteArticle = (id) => {
+  return fetch(`${BASE_URL}/articles/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+    },
+  });
+};
+

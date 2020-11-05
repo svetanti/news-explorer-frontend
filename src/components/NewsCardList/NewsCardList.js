@@ -3,11 +3,11 @@ import NewsCard from '../NewsCard/NewsCard'
 
 export default function NewsCardList(props) {
   const {
-    isSaved,
     isLoggedIn,
     pathname,
-    handleCardButtonClick,
-    newsToRender
+    onCardClick,
+    newsToRender,
+    savedNews
   } = props;
 
   return (
@@ -18,9 +18,9 @@ export default function NewsCardList(props) {
             article={article}
             key={index}
             isLoggedIn={isLoggedIn}
-            isSaved={isSaved}
             pathname={pathname}
-            handleCardButtonClick={handleCardButtonClick} />
+            savedNews={savedNews}
+            onCardClick={onCardClick} />
         ))}
       </ul>
     </section>

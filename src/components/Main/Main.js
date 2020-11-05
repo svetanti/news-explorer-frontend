@@ -10,17 +10,17 @@ export default function Main(props) {
     onSearch,
     isLoggedIn,
     isLoading,
-    isSaved,
     pathname,
-    handleCardButtonClick,
+    onCardClick,
     onShowMore,
     news,
+    savedNews,
+    isSearchOk,
     currentRow,
     isError } = props;
 
   const cardsPerRow = 3;
-  const articles = news.articles;
-  const newsToRender = articles && articles.slice(0, (currentRow + 1) * cardsPerRow);
+  const newsToRender = news.slice(0, (currentRow + 1) * cardsPerRow);
 
   return (
     <section className='main'>
@@ -29,17 +29,17 @@ export default function Main(props) {
         isLoading && (<Preloader />)
       }
       {
-        news.status === 'ok' &&
+        isSearchOk &&
         <div className='main__news-container'>
           {
-            news.length ? (<>
+            newsToRender.length ? (<>
               <h2 className='main__news-heading'>Результаты поиска</h2>
               <NewsCardList
                 newsToRender={newsToRender}
                 pathname={pathname}
                 isLoggedIn={isLoggedIn}
-                isSaved={isSaved}
-                handleCardButtonClick={handleCardButtonClick}
+                savedNews={savedNews}
+                onCardClick={onCardClick}
                 currentRow={currentRow} />
               {
                 newsToRender.length !== news.length &&
@@ -64,7 +64,7 @@ export default function Main(props) {
           </div>
         </div>)
       }
-      < About />
+      <About />
     </section>
   )
 }
