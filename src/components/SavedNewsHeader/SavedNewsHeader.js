@@ -1,9 +1,9 @@
 import React from 'react';
 
 export default function SavedNewssaved(props) {
-  const { savedNews, userName } = props;
+  const { savedNews, userName, isLoggedIn } = props;
 
-  const keywords = savedNews.map(item => item.keyword);
+  const keywords = isLoggedIn && savedNews.map(item => item.keyword);
   console.log(keywords);
 
   return (

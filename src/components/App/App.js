@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Switch, Route, useLocation } from 'react-router-dom';
+import { Switch, Route, useLocation, useHistory } from 'react-router-dom';
 import './App.css';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -37,11 +37,10 @@ export default function App() {
   const [currentUser, setCurrentUser] = useState({});
 
   const [isMenuOpened, setMenuOpened] = useState(false);
-
-  // Временный юзернейм
   const [userName, setUserName] = useState('');
 
   const { pathname } = useLocation();
+  const history = useHistory();
 
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
@@ -64,17 +63,9 @@ export default function App() {
     }
   }, []);
 
-  useEffect(() => {
-    mainApi.getSavedNews()
-      .then((res) => {
-        return res.json();
-      })
-      .then((news) => {
-        console.log(news.data);
-        setSavedNews(news.data);
-      })
-      .catch(err => console.log(err));
-  }, []);
+  /*  useEffect(() => {
+     
+   }, []); */
 
   useEffect(() => {
     function closeOnEsc(evt) {
@@ -107,18 +98,11 @@ export default function App() {
     setLoginOpen(true);
   };
 
-  function handleRegisterPopupOpen() {
-    setRegisterOpen(true);
-  };
-
-  function handleTooltipPopupOpen() {
-    setTooltipOpen(true);
-  };
-
   function handleSignOut() {
     setLoggedIn(false);
     localStorage.removeItem('jwt');
     setUserName('');
+    history.push('/');
   };
 
   function handleAuth() {
@@ -198,12 +182,24 @@ export default function App() {
           });
         setLoggedIn(true);
         setLoginOpen(false);
+        getSavedNews();
       })
       .catch((err) => {
         console.log(err.message);
         setAuthError(err.message);
       });
   };
+
+  function getSavedNews() {
+    mainApi.getSavedNews()
+      .then((res) => {
+        return res.json();
+      })
+      .then((news) => {
+        setSavedNews(news.data);
+      })
+      .catch(err => console.log(err));
+  }
 
   function handleArticleClick(article) {
     const saved = savedNews.find((i) => i.publishedAt === article.publishedAt && i.title === article.title);

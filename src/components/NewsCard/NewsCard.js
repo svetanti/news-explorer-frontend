@@ -6,7 +6,9 @@ export default function NewsCard(props) {
 
   const { keyword, title, description, publishedAt, url, urlToImage, source } = article;
 
-  const isSaved = savedNews.some((i) => i.publishedAt === article.publishedAt && i.title === article.title);
+  const isSaved = isLoggedIn
+    && savedNews.some((i) => i.publishedAt === article.publishedAt
+      && i.title === article.title);
 
   const options = {
     month: 'long',
@@ -34,13 +36,13 @@ export default function NewsCard(props) {
       <button
         type='button'
         className='card__element card__button'
-        onClick={handleCardButtonClick}>
+        onClick={handleCardButtonClick}
+        disabled={!isLoggedIn}>
         <CardButtonIcon
           pathname={pathname}
           isSaved={isSaved} />
       </button>
-      { (isLoggedIn && isSaved) &&
-        < span className='card__element card__tooltip'>{tooltipText}</span>}
+      <span className={`card__element card__tooltip`}>{tooltipText}</span>
       <div className='card__img-wrapper'>
         <img
           src={urlToImage}

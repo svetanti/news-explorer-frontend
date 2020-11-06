@@ -14,7 +14,8 @@ export default function SavedNews(props) {
     <div className='saved-news'>
       <SavedNewsHeader
         savedNews={savedNews}
-        userName={userName} />
+        userName={userName}
+        isLoggedIn={isLoggedIn} />
       <NewsCardList
         newsToRender={savedNews}
         savedNews={savedNews}
