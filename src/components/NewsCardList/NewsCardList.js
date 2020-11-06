@@ -4,7 +4,6 @@ import NewsCard from '../NewsCard/NewsCard'
 export default function NewsCardList(props) {
   const {
     isLoggedIn,
-    pathname,
     onCardClick,
     newsToRender,
     savedNews
@@ -18,7 +17,6 @@ export default function NewsCardList(props) {
             article={article}
             key={index}
             isLoggedIn={isLoggedIn}
-            pathname={pathname}
             savedNews={savedNews}
             onCardClick={onCardClick} />
         ))}

@@ -37,7 +37,7 @@ export default function PopupWithForm(props) {
             <Button
               buttonClassName='popup__submit'
               onClick={onSubmit}
-              disabled={isFormValid ? false : true}>
+              disabled={!isFormValid}>
               {submitButtonText}
             </Button>
           </>

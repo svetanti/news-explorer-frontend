@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { NewsContext } from '../../contexts/NewsContext';
 
 export default function SavedNewssaved(props) {
-  const { savedNews, userName, isLoggedIn } = props;
+  const { isLoggedIn } = props;
+  const currentUser = useContext(CurrentUserContext);
+  const { savedNews } = useContext(NewsContext);
 
   const keywords = isLoggedIn ? savedNews.map(item => item.keyword) : [];
 
@@ -48,7 +52,7 @@ export default function SavedNewssaved(props) {
     <div className='saved-news-header'>
       <p className='saved-news-header__title'>Сохранённые статьи</p>
       <h2 className='saved-news-header__heading'>
-        {userName}, у вас {savedNews.length} сохранённых {articlesDeclension}</h2>
+        {currentUser.name}, у вас {savedNews.length} сохранённых {articlesDeclension}</h2>
       <p className='saved-news-header__keywords-list'>По ключевым словам:&nbsp;
       <span className='saved-news-header__keywords'>{keywordsToRender}</span></p>
     </div>

@@ -1,23 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import About from '../About/About';
 import Preloader from '../Preloader/Preloader';
 import NewsCardList from '../NewsCardList/NewsCardList';
 import Button from '../ui/Button/Button';
+import { NewsContext } from '../../contexts/NewsContext';
 
 export default function Main(props) {
   const {
     onSearch,
     isLoggedIn,
     isLoading,
-    pathname,
     onCardClick,
     onShowMore,
-    news,
-    savedNews,
     isSearchOk,
     currentRow,
     isError } = props;
+
+  const { news, savedNews } = useContext(NewsContext);
 
   const cardsPerRow = 3;
   const newsToRender = news.slice(0, (currentRow + 1) * cardsPerRow);
@@ -36,7 +36,6 @@ export default function Main(props) {
               <h2 className='main__news-heading'>Результаты поиска</h2>
               <NewsCardList
                 newsToRender={newsToRender}
-                pathname={pathname}
                 isLoggedIn={isLoggedIn}
                 savedNews={savedNews}
                 onCardClick={onCardClick}

@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import CardButtonIcon from '../ui/CardButtonIcon/CardButtonIcon';
+import { NewsContext } from '../../contexts/NewsContext';
+import { useLocation } from 'react-router-dom';
 
 export default function NewsCard(props) {
-  const { isLoggedIn, onCardClick, pathname, article, savedNews } = props;
+  const { isLoggedIn, onCardClick, article } = props;
 
   const { keyword, title, description, publishedAt, url, urlToImage, source } = article;
+
+  const { savedNews } = useContext(NewsContext);
+  const { pathname } = useLocation();
 
   const isSaved = isLoggedIn
     && savedNews.some((i) => i.publishedAt === article.publishedAt
