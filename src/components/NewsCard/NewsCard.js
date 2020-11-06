@@ -42,7 +42,8 @@ export default function NewsCard(props) {
           pathname={pathname}
           isSaved={isSaved} />
       </button>
-      <span className={`card__element card__tooltip`}>{tooltipText}</span>
+      { (!isLoggedIn || (isLoggedIn && isSaved)) &&
+        <span className={`card__element card__tooltip`}>{tooltipText}</span>}
       <div className='card__img-wrapper'>
         <img
           src={urlToImage}

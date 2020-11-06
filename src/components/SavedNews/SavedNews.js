@@ -10,6 +10,8 @@ export default function SavedNews(props) {
     isLoggedIn,
     onCardClick } = props;
 
+  console.log(isLoggedIn);
+
   return (
     <div className='saved-news'>
       <SavedNewsHeader

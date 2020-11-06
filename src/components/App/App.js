@@ -50,6 +50,7 @@ export default function App() {
           setLoggedIn(true);
           setUserName(res.data.name);
           setCurrentUser(res.data);
+          getSavedNews();
         })
         .catch(err => console.log(err));
     }
@@ -62,10 +63,6 @@ export default function App() {
       setSearchOk(true);
     }
   }, []);
-
-  /*  useEffect(() => {
-     
-   }, []); */
 
   useEffect(() => {
     function closeOnEsc(evt) {
@@ -82,12 +79,6 @@ export default function App() {
 
   function handleMenuOpen() {
     setMenuOpened(!isMenuOpened);
-  };
-
-  function handleCardButtonClick() {
-    if (isLoggedIn) {
-      setSaved(!isSaved);
-    }
   };
 
   function handleShowMore() {
@@ -250,6 +241,7 @@ export default function App() {
         </Route>
         <Route path='/saved-news'>
           <SavedNews
+            isLoggedIn={isLoggedIn}
             savedNews={savedNews}
             pathname={pathname}
             userName={userName}
