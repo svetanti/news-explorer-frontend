@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Switch, Route, useHistory } from 'react-router-dom';
+import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
 import './App.css';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -36,6 +36,10 @@ export default function App() {
   const [savedNews, setSavedNews] = useState([]);
 
   const history = useHistory();
+
+  useEffect(() => {
+
+  }, []);
 
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
@@ -186,6 +190,7 @@ export default function App() {
   }
 
   function handleArticleClick(article) {
+    if (!isLoggedIn) return setRegisterOpen(true);
     const saved = savedNews.find((i) => i.publishedAt === article.publishedAt && i.title === article.title);
     if (!saved) {
       mainApi.saveArticle(article)
@@ -234,6 +239,11 @@ export default function App() {
               isLoggedIn={isLoggedIn}
               onCardClick={handleDeleteArticle}
             />
+            <Route path='/saved-news'>
+              {isLoggedIn
+                ? <Redirect to='/saved-news' />
+                : <Redirect to="/" />}
+            </Route>
           </Switch>
           <Footer />
 

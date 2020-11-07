@@ -41,8 +41,7 @@ export default function NewsCard(props) {
       <button
         type='button'
         className='card__element card__button'
-        onClick={handleCardButtonClick}
-        disabled={!isLoggedIn}>
+        onClick={handleCardButtonClick}>
         <CardButtonIcon
           pathname={pathname}
           isSaved={isSaved} />
