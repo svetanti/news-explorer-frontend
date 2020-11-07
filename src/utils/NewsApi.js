@@ -1,8 +1,8 @@
 import { newsApiOptions } from './options';
-const { baseUrl, from, to, pageSize, headers } = newsApiOptions;
+const { baseUrl, from, to, pageSize, apiKey, headers } = newsApiOptions;
 
 export function sendRequest(keyword, parameters) {
-  return fetch(`${baseUrl}?q=${keyword}&${from}&${to}&${pageSize}`,
+  return fetch(`${baseUrl}?q=${keyword}&${from}&${to}&${pageSize}&${apiKey}`,
     parameters)
     .then((res) => {
       if (res.ok) {

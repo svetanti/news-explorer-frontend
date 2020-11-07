@@ -6,12 +6,12 @@ const dateFrom = new Intl.DateTimeFormat(dateLocales, dateOptions).format(Date.n
 const dateTo = new Intl.DateTimeFormat(dateLocales, dateOptions).format(Date.now());
 
 export const newsApiOptions = {
-  baseUrl: 'https://newsapi.org/v2/everything',
+  baseUrl: 'https://nomoreparties.co/news/v2/everything',
   from: `from=${dateFrom}`,
   to: `to=${dateTo}`,
-  pageSize: `pageSize=100`,
+  pageSize: 'pageSize=100',
+  apiKey: 'apiKey=19a7ee150200415abfcf6899be597e77',
   headers: {
-    'Authorization': '19a7ee150200415abfcf6899be597e77',
     'Content-Type': 'application/x-www-form-urlencoded',
 
   },
