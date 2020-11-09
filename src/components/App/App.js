@@ -36,7 +36,7 @@ export default function App() {
 
   useEffect(() => {
     (!isLoggedIn && pathname === '/saved-news') && setLoginOpen(true);
-  }, [isLoggedIn, pathname])
+  }, [isLoggedIn, pathname]);
 
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
@@ -176,7 +176,7 @@ export default function App() {
         setSavedNews(news.data);
       })
       .catch(err => console.log(err));
-  }
+  };
 
   function handleArticleClick(article) {
     if (!isLoggedIn) return setRegisterOpen(true);
@@ -193,13 +193,13 @@ export default function App() {
       return;
     }
     handleDeleteArticle(saved);
-  }
+  };
 
   function handleDeleteArticle(article) {
     mainApi.deleteArticle(article._id)
       .then(() => setSavedNews(savedNews.filter((item) => item._id !== article._id)))
       .catch((err) => console.log(`Ошибка при удалении карточки: ${err}`));
-  }
+  };
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

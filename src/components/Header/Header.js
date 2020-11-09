@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import Logo from '../ui/Logo/Logo';
-
 import MenuIcon from '../ui/MenuIcon/MenuIcon';
 import Navigation from '../Navigation/Navigation';
-
-import { useLocation } from 'react-router-dom';
 
 export default function Header(props) {
   const { isLoggedIn, onClick, onSignOut } = props;
@@ -15,9 +13,7 @@ export default function Header(props) {
   const headerClassName = `header ${isMenuOpened ? 'header_mobile' : ''}`;
   const navigationClassName = `${isMenuOpened ? 'header__nav_mobile' : ''}`;
 
-  function handleMenuOpen() {
-    setMenuOpened(!isMenuOpened);
-  };
+  const handleMenuOpen = () => setMenuOpened(!isMenuOpened);
 
   return (
     <header className={headerClassName}>

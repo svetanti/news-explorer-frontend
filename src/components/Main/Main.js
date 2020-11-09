@@ -42,7 +42,9 @@ export default function Main(props) {
                 currentRow={currentRow} />
               {
                 newsToRender.length !== news.length &&
-                (<Button buttonClassName='main__show-more' onClick={onShowMore}>Показать еще</Button>)
+                (<Button buttonClassName='main__show-more' onClick={onShowMore}>
+                  Показать еще
+                </Button>)
               }
             </>)
               : (<div className='main__not-found'>
