@@ -5,6 +5,7 @@ import Preloader from '../Preloader/Preloader';
 import NewsCardList from '../NewsCardList/NewsCardList';
 import Button from '../ui/Button/Button';
 import { NewsContext } from '../../contexts/NewsContext';
+import { CARDS_PER_ROW } from '../../utils/constants';
 
 export default function Main(props) {
   const {
@@ -19,8 +20,7 @@ export default function Main(props) {
 
   const { news, savedNews } = useContext(NewsContext);
 
-  const cardsPerRow = 3;
-  const newsToRender = news.slice(0, (currentRow + 1) * cardsPerRow);
+  const newsToRender = news.slice(0, (currentRow + 1) * CARDS_PER_ROW);
 
   return (
     <section className='main'>

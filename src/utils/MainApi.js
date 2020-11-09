@@ -1,6 +1,6 @@
 import BadRequestError from '../errors/BadRequestError';
 import UnauthorizedError from '../errors/UnauthorizedError';
-import { BASE_URL } from './options';
+import { BASE_URL } from './constants';
 
 export const register = (email, password, name) => fetch(`${BASE_URL}/signup`, {
   method: 'POST',
@@ -74,7 +74,10 @@ export const getSavedNews = () => {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${localStorage.getItem('jwt')}`
     }
-  });
+  })
+    .then((res) => {
+      return res.json();
+    });
 }
 
 export const saveArticle = (article) => {
@@ -96,6 +99,9 @@ export const saveArticle = (article) => {
       urlToImage,
     }),
   })
+    .then((res) => {
+      return res.json();
+    });
 }
 
 export const deleteArticle = (id) => {

@@ -1,5 +1,5 @@
-import { newsApiOptions } from './options';
-const { baseUrl, from, to, pageSize, apiKey, headers } = newsApiOptions;
+import { NEWS_API_OPTIONS } from './constants';
+const { baseUrl, from, to, pageSize, apiKey, headers } = NEWS_API_OPTIONS;
 
 export function sendRequest(keyword, parameters) {
   return fetch(`${baseUrl}?q=${keyword}&${from}&${to}&${pageSize}&${apiKey}`,

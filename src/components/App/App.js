@@ -15,7 +15,6 @@ import * as newsApi from '../../utils/NewsApi'
 import * as mainApi from '../../utils/MainApi';
 
 export default function App() {
-
   const escape = require('escape-html');
 
   const [isLoggedIn, setLoggedIn] = useState(false);
@@ -47,7 +46,7 @@ export default function App() {
           setCurrentUser(res.data);
           getSavedNews();
         })
-        .catch(err => console.log(err));
+        .catch((err) => console.log(err));
     }
   }, []);
 
@@ -118,11 +117,11 @@ export default function App() {
     newsApi
       .getNews(keyword)
       .then((res) => {
-        setSearchOk(true);
-        const news = res.articles.map((item) => ({ ...item, keyword: keyword }));
-        localStorage.setItem('news', JSON.stringify(news));
-        setSearchError(false);
+        const news = res.articles.map((item) => ({ ...item, keyword }));
         setNews(news);
+        localStorage.setItem('news', JSON.stringify(news));
+        setSearchOk(true);
+        setSearchError(false);
         setLoading(false);
       })
       .catch((err) => {
@@ -135,47 +134,29 @@ export default function App() {
   function handleRegister(email, password, name) {
     mainApi.register(email, escape(password), name)
       .then((res) => {
-        console.log(res);
         setRegisterOpen(false);
         setTooltipOpen(true);
       })
-      .catch((err) => {
-        console.log(err.message);
-        setAuthError(err.message);
-      });
+      .catch((err) => setAuthError(err.message));
   };
 
   function handleLogin(email, password) {
-    setAuthError('');
     mainApi.authorize(email, escape(password))
       .then((data) => {
         mainApi.getUserInfo(data)
-          .then((res) => {
-            setCurrentUser(res.data);
-          })
-          .catch((err) => {
-            console.log(err);
-            setAuthError(err.message);
-          });
+          .then((res) => setCurrentUser(res.data))
+          .catch((err) => setAuthError(err.message));
         setLoggedIn(true);
         setLoginOpen(false);
         getSavedNews();
       })
-      .catch((err) => {
-        console.log(err.message);
-        setAuthError(err.message);
-      });
+      .catch((err) => setAuthError(err.message));
   };
 
   function getSavedNews() {
     mainApi.getSavedNews()
-      .then((res) => {
-        return res.json();
-      })
-      .then((news) => {
-        setSavedNews(news.data);
-      })
-      .catch(err => console.log(err));
+      .then((news) => setSavedNews(news.data))
+      .catch(err => console.log(`Ошибка при загрузке сохранённых новостей: ${err.message}`));
   };
 
   function handleArticleClick(article) {
@@ -183,12 +164,7 @@ export default function App() {
     const saved = savedNews.find((i) => i.publishedAt === article.publishedAt && i.title === article.title);
     if (!saved) {
       mainApi.saveArticle(article)
-        .then((res) => {
-          return res.json();
-        })
-        .then(newArticle => {
-          setSavedNews([newArticle.data, ...savedNews]);
-        })
+        .then(newArticle => setSavedNews([newArticle.data, ...savedNews]))
         .catch((err) => console.log(err));
       return;
     }
