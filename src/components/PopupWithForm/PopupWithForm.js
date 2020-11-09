@@ -11,7 +11,8 @@ export default function PopupWithForm(props) {
     children,
     submitButtonText,
     isFormValid,
-    authError
+    authError,
+    disabled
   } = props;
 
   return (
@@ -28,7 +29,9 @@ export default function PopupWithForm(props) {
           type='reset'
           className='popup__close-button'
           onClick={onClose} />
-        <fieldset className='popup__input-container'>
+        <fieldset
+          className='popup__input-container'
+          disabled={disabled}>
           {children}
         </fieldset>
         {formName !== 'tooltip' &&

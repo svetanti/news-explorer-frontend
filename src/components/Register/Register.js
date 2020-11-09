@@ -4,7 +4,7 @@ import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import { useFormWithValidation } from '../../utils/useFormWithValidation';
 
 export default function Register(props) {
-  const { isOpen, onClose, onChangeForm, onRegister, authError } = props;
+  const { isOpen, onClose, onChangeForm, onRegister, authError, disabled } = props;
 
   const emailField = useFormWithValidation();
   const nameField = useFormWithValidation();
@@ -37,6 +37,7 @@ export default function Register(props) {
       isFormValid={emailField.isValid && passwordField.isValid && nameField.isValid}
       onSubmit={handleRegister}
       authError={authError}
+      disabled={disabled}
       submitButtonText='Зарегистрироваться'>
       <legend className='popup__heading'>Регистрация</legend>
       <Input

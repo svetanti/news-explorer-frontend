@@ -66,6 +66,10 @@
   margin: 0;
 }
 
+.popup__input-container:disabled {
+  color: var(--secondary-text-color);
+}
+
 .popup__heading {
   font-family: var(--roboto);
   font-size: 24px;

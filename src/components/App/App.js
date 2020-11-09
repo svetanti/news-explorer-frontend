@@ -29,6 +29,7 @@ export default function App() {
   const [currentRow, setCurrentRow] = useState(0);
   const [news, setNews] = useState([]);
   const [savedNews, setSavedNews] = useState([]);
+  const [disabled, setDisabled] = useState(false);
 
   const history = useHistory();
   const { pathname } = useLocation();
@@ -132,15 +133,18 @@ export default function App() {
   };
 
   function handleRegister(email, password, name) {
+    setDisabled(true);
     mainApi.register(email, escape(password), name)
       .then((res) => {
         setRegisterOpen(false);
         setTooltipOpen(true);
+        setDisabled(false);
       })
       .catch((err) => setAuthError(err.message));
   };
 
   function handleLogin(email, password) {
+    setDisabled(true);
     mainApi.authorize(email, escape(password))
       .then((data) => {
         mainApi.getUserInfo(data)
@@ -149,6 +153,7 @@ export default function App() {
         setLoggedIn(true);
         setLoginOpen(false);
         getSavedNews();
+        setDisabled(false);
       })
       .catch((err) => setAuthError(err.message));
   };
@@ -216,11 +221,13 @@ export default function App() {
             onClose={handlePopupsClose}
             onChangeForm={handleTogglePopup}
             authError={authError}
-            onLogin={handleLogin} />
+            onLogin={handleLogin}
+            disabled={disabled} />
           <InfoTooltip
             isOpen={isTooltipOpen}
             onClose={handlePopupsClose}
-            onChangeForm={handleOpenLogin} />
+            onChangeForm={handleOpenLogin}
+            disabled={disabled} />
         </div>
       </NewsContext.Provider>
     </CurrentUserContext.Provider >

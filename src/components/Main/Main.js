@@ -24,7 +24,9 @@ export default function Main(props) {
 
   return (
     <section className='main'>
-      <SearchForm onSearch={onSearch} />
+      <SearchForm
+        onSearch={onSearch}
+        isLoading={isLoading} />
       {
         isLoading && (<Preloader />)
       }

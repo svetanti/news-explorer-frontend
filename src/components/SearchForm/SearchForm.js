@@ -4,7 +4,7 @@ import Button from '../ui/Button/Button';
 import { useFormWithValidation } from '../../utils/useFormWithValidation';
 
 export default function SearchForm(props) {
-  const { onSearch } = props;
+  const { onSearch, isLoading } = props;
 
   const searchField = useFormWithValidation();
 
@@ -28,6 +28,7 @@ export default function SearchForm(props) {
           type='text'
           {...searchField}
           placeholder='Введите тему новости'
+          disabled={isLoading}
           inputFieldClassName='search__input-field'
           inputLabelClassName='search__input' />
         <Button
