@@ -24,13 +24,9 @@ export default function App() {
   const [isLoginOpen, setLoginOpen] = useState(false);
   const [isTooltipOpen, setTooltipOpen] = useState(false);
   const [authError, setAuthError] = useState('');
-
   const [isLoading, setLoading] = useState(false);
   const [isSearchError, setSearchError] = useState(false);
   const [isSearchOk, setSearchOk] = useState(false);
-
-  const [isMenuOpened, setMenuOpened] = useState(false);
-
   const [currentRow, setCurrentRow] = useState(0);
   const [news, setNews] = useState([]);
   const [savedNews, setSavedNews] = useState([]);
@@ -76,10 +72,6 @@ export default function App() {
     };
   }, []);
 
-  function handleMenuOpen() {
-    setMenuOpened(!isMenuOpened);
-  };
-
   function handleShowMore() {
     setCurrentRow(currentRow + 1);
   };
@@ -93,10 +85,6 @@ export default function App() {
     localStorage.removeItem('jwt');
     setCurrentUser({});
     history.push('/');
-  };
-
-  function handleAuthButtonClick() {
-    isLoggedIn ? handleSignOut() : handleLoginPopupOpen();
   };
 
   function handlePopupsClose() {
@@ -219,9 +207,8 @@ export default function App() {
         <div className='app'>
           <Header
             isLoggedIn={isLoggedIn}
-            isMenuOpened={isMenuOpened}
-            onMenuOpen={handleMenuOpen}
-            onClick={handleAuthButtonClick} />
+            onClick={handleLoginPopupOpen}
+            onSignOut={handleSignOut} />
           <Switch>
             <Route exact path='/'>
               <Main
