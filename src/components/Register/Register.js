@@ -13,13 +13,26 @@ export default function Register(props) {
   function handleRegister(evt) {
     evt.preventDefault();
     onRegister(emailField.value, passwordField.value, nameField.value);
-  }
+  };
+
+  function handleClose() {
+    emailField.setErrorMessage('');
+    emailField.setValue('');
+    passwordField.setErrorMessage('');
+    passwordField.setValue('');
+    nameField.setErrorMessage('');
+    nameField.setValue('');
+    emailField.setIsValid(false);
+    passwordField.setIsValid(false);
+    nameField.setIsValid(false);
+    onClose();
+  };
 
   return (
     <PopupWithForm
       formName='registration'
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={handleClose}
       onChangeForm={onChangeForm}
       isFormValid={emailField.isValid && passwordField.isValid && nameField.isValid}
       onSubmit={handleRegister}

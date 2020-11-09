@@ -12,13 +12,23 @@ export default function Login(props) {
   function handleLogin(evt) {
     evt.preventDefault();
     onLogin(emailField.value, passwordField.value);
-  }
+  };
+
+  function handleClose() {
+    emailField.setErrorMessage('');
+    emailField.setValue('');
+    passwordField.setErrorMessage('');
+    passwordField.setValue('');
+    emailField.setIsValid(false);
+    passwordField.setIsValid(false);
+    onClose();
+  };
 
   return (
     <PopupWithForm
       formName='login'
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={handleClose}
       onChangeForm={onChangeForm}
       isFormValid={emailField.isValid && passwordField.isValid}
       onSubmit={handleLogin}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
+import { Switch, Route, useHistory, useLocation } from 'react-router-dom';
 import './App.css';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -36,10 +36,11 @@ export default function App() {
   const [savedNews, setSavedNews] = useState([]);
 
   const history = useHistory();
+  const { pathname } = useLocation();
 
   useEffect(() => {
-
-  }, []);
+    (!isLoggedIn && pathname === '/saved-news') && setLoginOpen(true);
+  }, [isLoggedIn, pathname])
 
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
@@ -237,13 +238,7 @@ export default function App() {
               path='/saved-news'
               component={SavedNews}
               isLoggedIn={isLoggedIn}
-              onCardClick={handleDeleteArticle}
-            />
-            <Route path='/saved-news'>
-              {isLoggedIn
-                ? <Redirect to='/saved-news' />
-                : <Redirect to="/" />}
-            </Route>
+              onCardClick={handleDeleteArticle} />
           </Switch>
           <Footer />
 
