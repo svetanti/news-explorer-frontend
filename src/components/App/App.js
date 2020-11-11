@@ -123,13 +123,12 @@ export default function App() {
         localStorage.setItem('news', JSON.stringify(news));
         setSearchOk(true);
         setSearchError(false);
-        setLoading(false);
       })
       .catch((err) => {
         console.log(`Ошибка при загрузке новостей: ${err}`);
-        setLoading(false);
         setSearchError(true);
-      });
+      })
+      .finally(() => setLoading(false));
   };
 
   function handleRegister(email, password, name) {
@@ -138,9 +137,9 @@ export default function App() {
       .then((res) => {
         setRegisterOpen(false);
         setTooltipOpen(true);
-        setDisabled(false);
       })
-      .catch((err) => setAuthError(err.message));
+      .catch((err) => setAuthError(err.message))
+      .finally(() => setDisabled(false));
   };
 
   function handleLogin(email, password) {
@@ -153,9 +152,9 @@ export default function App() {
         setLoggedIn(true);
         setLoginOpen(false);
         getSavedNews();
-        setDisabled(false);
       })
-      .catch((err) => setAuthError(err.message));
+      .catch((err) => setAuthError(err.message))
+      .finally(() => setDisabled(false));
   };
 
   function getSavedNews() {
