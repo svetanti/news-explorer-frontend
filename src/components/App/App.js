@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Switch, Route, useLocation } from 'react-router-dom';
+import { Switch, Route, useHistory, useLocation } from 'react-router-dom';
 import './App.css';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -8,27 +8,56 @@ import Footer from '../Footer/Footer';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
-
-// Временные карточки, пока не подгружаются с API
-import temporaryNews from '../../utils/temporaryNews.json';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { NewsContext } from '../../contexts/NewsContext';
+import * as newsApi from '../../utils/NewsApi'
+import * as mainApi from '../../utils/MainApi';
 
 export default function App() {
-  const [isMenuOpened, setMenuOpened] = useState(false);
-  const [isLoggedIn, setLoggedIn] = useState(true);
-  const [isLoading, setLoading] = useState(false);
-  const [isResult, setResult] = useState(true);
-  const [isSaved, setSaved] = useState(false);
+  const escape = require('escape-html');
+
+  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
   const [isRegisterOpen, setRegisterOpen] = useState(false);
   const [isLoginOpen, setLoginOpen] = useState(false);
   const [isTooltipOpen, setTooltipOpen] = useState(false);
+  const [authError, setAuthError] = useState('');
+  const [isLoading, setLoading] = useState(false);
+  const [isSearchError, setSearchError] = useState(false);
+  const [isSearchOk, setSearchOk] = useState(false);
   const [currentRow, setCurrentRow] = useState(0);
-  const [disabled, setDisabled] = useState(true);
-  const [news, setNews] = useState(temporaryNews.articles);
+  const [news, setNews] = useState([]);
+  const [savedNews, setSavedNews] = useState([]);
+  const [disabled, setDisabled] = useState(false);
 
-  // Временный юзернейм
-  const [userName, setUserName] = useState('Жак-Ив Кусь');
-
+  const history = useHistory();
   const { pathname } = useLocation();
+
+  useEffect(() => {
+    (!isLoggedIn && pathname === '/saved-news') && setLoginOpen(true);
+  }, [isLoggedIn, pathname]);
+
+  useEffect(() => {
+    const jwt = localStorage.getItem('jwt');
+    if (jwt) {
+      mainApi.getUserInfo(jwt)
+        .then((res) => {
+          setLoggedIn(true);
+          setCurrentUser(res.data);
+          getSavedNews();
+        })
+        .catch((err) => console.log(err));
+    }
+  }, []);
+
+  useEffect(() => {
+    const localStorageNews = JSON.parse(localStorage.getItem('news'));
+    if (localStorageNews && localStorageNews.length) {
+      setNews(localStorageNews);
+      setSearchOk(true);
+    }
+  }, []);
 
   useEffect(() => {
     function closeOnEsc(evt) {
@@ -43,91 +72,165 @@ export default function App() {
     };
   }, []);
 
-  function handleMenuOpen() {
-    setMenuOpened(!isMenuOpened);
-  };
-
-  function handleCardButtonClick() {
-    if (isLoggedIn) {
-      setSaved(!isSaved);
-    }
-  };
-
   function handleShowMore() {
     setCurrentRow(currentRow + 1);
-  }
+  };
 
   function handleLoginPopupOpen() {
     setLoginOpen(true);
-  }
-  function handleRegisterPopupOpen() {
-    setRegisterOpen(true);
-  }
-  function handleTooltipPopupOpen() {
-    setTooltipOpen(true);
-  }
+  };
+
+  function handleSignOut() {
+    setLoggedIn(false);
+    localStorage.removeItem('jwt');
+    setCurrentUser({});
+    history.push('/');
+  };
 
   function handlePopupsClose() {
     setRegisterOpen(false);
     setLoginOpen(false);
     setTooltipOpen(false);
-  }
-
-  function handleSwitchToRegister() {
-    setLoginOpen(false);
-    setRegisterOpen(true);
+    setAuthError('');
   };
 
-  function handleSwitchToLogin() {
-    setRegisterOpen(false);
+  function handleTogglePopup() {
+    setAuthError('');
+    setLoginOpen(!isLoginOpen);
+    setRegisterOpen(!isRegisterOpen);
+  };
+
+  function handleOpenLogin() {
+    setAuthError('');
+    setTooltipOpen(false);
     setLoginOpen(true);
   };
 
-  return (
-    <div className='app'>
-      <Header
-        isLoggedIn={isLoggedIn}
-        isMenuOpened={isMenuOpened}
-        onMenuOpen={handleMenuOpen}
-        userName={userName}
-        pathname={pathname}
-        onClick={handleLoginPopupOpen} />
-      <Switch>
-        <Route exact path='/'>
-          <Main
-            isLoggedIn={isLoggedIn}
-            isLoading={isLoading}
-            isResult={isResult}
-            isSaved={isSaved}
-            pathname={pathname}
-            handleCardButtonClick={handleCardButtonClick}
-            onShowMore={handleShowMore}
-            news={news}
-            currentRow={currentRow} />
-        </Route>
-        <Route path='/saved-news'>
-          <SavedNews
-            news={news}
-            pathname={pathname}
-            userName={userName} />
-        </Route>
-      </Switch>
-      <Footer />
+  function handleNewsSearch(keyword, setErrorMessage) {
+    if (!keyword) {
+      setErrorMessage('Нужно ввести ключевое слово');
+      return;
+    }
+    setLoading(true);
+    setSearchOk(false);
+    setNews([]);
+    setCurrentRow(0);
+    newsApi
+      .getNews(keyword)
+      .then((res) => {
+        const news = res.articles.map((item) => ({ ...item, keyword }));
+        setNews(news);
+        localStorage.setItem('news', JSON.stringify(news));
+        setSearchOk(true);
+        setSearchError(false);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(`Ошибка при загрузке новостей: ${err}`);
+        setLoading(false);
+        setSearchError(true);
+      });
+  };
 
-      <Register
-        isOpen={isRegisterOpen}
-        onClose={handlePopupsClose}
-        onChangeForm={handleSwitchToLogin}
-        disabled={disabled} />
-      <Login
-        isOpen={isLoginOpen}
-        onClose={handlePopupsClose}
-        onChangeForm={handleSwitchToRegister}
-        disabled={disabled} />
-      <InfoTooltip
-        isOpen={isTooltipOpen}
-        onClose={handlePopupsClose} />
-    </div >
+  function handleRegister(email, password, name) {
+    setDisabled(true);
+    mainApi.register(email, escape(password), name)
+      .then((res) => {
+        setRegisterOpen(false);
+        setTooltipOpen(true);
+        setDisabled(false);
+      })
+      .catch((err) => setAuthError(err.message));
+  };
+
+  function handleLogin(email, password) {
+    setDisabled(true);
+    mainApi.authorize(email, escape(password))
+      .then((data) => {
+        mainApi.getUserInfo(data)
+          .then((res) => setCurrentUser(res.data))
+          .catch((err) => setAuthError(err.message));
+        setLoggedIn(true);
+        setLoginOpen(false);
+        getSavedNews();
+        setDisabled(false);
+      })
+      .catch((err) => setAuthError(err.message));
+  };
+
+  function getSavedNews() {
+    mainApi.getSavedNews()
+      .then((news) => setSavedNews(news.data))
+      .catch(err => console.log(`Ошибка при загрузке сохранённых новостей: ${err.message}`));
+  };
+
+  function handleArticleClick(article) {
+    if (!isLoggedIn) return setRegisterOpen(true);
+    const saved = savedNews.find((i) => i.publishedAt === article.publishedAt && i.title === article.title);
+    if (!saved) {
+      mainApi.saveArticle(article)
+        .then(newArticle => setSavedNews([newArticle.data, ...savedNews]))
+        .catch((err) => console.log(err));
+      return;
+    }
+    handleDeleteArticle(saved);
+  };
+
+  function handleDeleteArticle(article) {
+    mainApi.deleteArticle(article._id)
+      .then(() => setSavedNews(savedNews.filter((item) => item._id !== article._id)))
+      .catch((err) => console.log(`Ошибка при удалении карточки: ${err}`));
+  };
+
+  return (
+    <CurrentUserContext.Provider value={currentUser}>
+      <NewsContext.Provider value={{ news, savedNews }}>
+        <div className='app'>
+          <Header
+            isLoggedIn={isLoggedIn}
+            onClick={handleLoginPopupOpen}
+            onSignOut={handleSignOut} />
+          <Switch>
+            <Route exact path='/'>
+              <Main
+                onSearch={handleNewsSearch}
+                isLoggedIn={isLoggedIn}
+                isLoading={isLoading}
+                isError={isSearchError}
+                onCardClick={handleArticleClick}
+                onShowMore={handleShowMore}
+                isSearchOk={isSearchOk}
+                currentRow={currentRow} />
+            </Route>
+            <ProtectedRoute
+              path='/saved-news'
+              component={SavedNews}
+              isLoggedIn={isLoggedIn}
+              onCardClick={handleDeleteArticle} />
+          </Switch>
+          <Footer />
+
+          <Register
+            isOpen={isRegisterOpen}
+            onClose={handlePopupsClose}
+            onChangeForm={handleTogglePopup}
+            onRegister={handleRegister}
+            authError={authError} />
+          <Login
+            isOpen={isLoginOpen}
+            onClose={handlePopupsClose}
+            onChangeForm={handleTogglePopup}
+            authError={authError}
+            onLogin={handleLogin}
+            disabled={disabled} />
+          <InfoTooltip
+            isOpen={isTooltipOpen}
+            onClose={handlePopupsClose}
+            onChangeForm={handleOpenLogin}
+            disabled={disabled} />
+        </div>
+      </NewsContext.Provider>
+    </CurrentUserContext.Provider >
   );
 }
 

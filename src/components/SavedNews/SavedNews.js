@@ -1,27 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import NewsCardList from '../NewsCardList/NewsCardList';
+import { NewsContext } from '../../contexts/NewsContext';
 
 export default function SavedNews(props) {
-  const {
-    news,
-    userName,
-    pathname,
-    isLoggedIn,
-    isSaved,
-    handleCardButtonClick } = props;
+  const { isLoggedIn, onCardClick } = props;
+
+  const { savedNews } = useContext(NewsContext);
 
   return (
     <div className='saved-news'>
       <SavedNewsHeader
-        news={news}
-        userName={userName} />
+        isLoggedIn={isLoggedIn} />
       <NewsCardList
-        newsToRender={news}
-        pathname={pathname}
+        newsToRender={savedNews}
         isLoggedIn={isLoggedIn}
-        isSaved={isSaved}
-        handleCardButtonClick={handleCardButtonClick} />
+        onCardClick={onCardClick} />
     </div >
   )
 }

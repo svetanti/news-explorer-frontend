@@ -10,13 +10,15 @@ export default function Input(props) {
     minLength,
     maxLength,
     required,
+    autoComplete,
     isValid,
     onChange,
     placeholder,
     label,
     inputLabelClassName,
     inputFieldClassName,
-    errorMessage
+    errorMessage,
+    disabled
   } = props;
 
   return (
@@ -28,17 +30,17 @@ export default function Input(props) {
         minLength={minLength}
         maxLength={maxLength}
         required={required}
+        autoComplete={autoComplete}
         onChange={onChange}
         className={`input__field ${inputFieldClassName}`}
         placeholder={placeholder}
+        disabled={disabled}
       ></input>
-      { name !== 'search' &&
-        < span
-          className={`input__error ${!isValid && 'input__error_active'}`}
-          id={`${name}-error`}
-        >
-          {errorMessage}
-        </span>}
+      <span
+        className={`input__error ${name}__input-error ${!isValid && `${name}__input-error_active`}`}
+        id={`${name}-error`}>
+        {errorMessage}
+      </span>
     </label >
   )
 }

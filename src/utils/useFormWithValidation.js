@@ -9,5 +9,5 @@ export const useFormWithValidation = () => {
     setErrorMessage(evt.target.validationMessage);
     setIsValid(evt.target.validity.valid);
   }, []);
-  return { value, errorMessage, isValid, onChange };
+  return { value, setValue, errorMessage, setErrorMessage, isValid, setIsValid, onChange };
 };

@@ -4,20 +4,40 @@ import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import { useFormWithValidation } from '../../utils/useFormWithValidation';
 
 export default function Register(props) {
-  const { isOpen, onClose, onChangeForm, onRegister } = props;
+  const { isOpen, onClose, onChangeForm, onRegister, authError, disabled } = props;
 
   const emailField = useFormWithValidation();
   const nameField = useFormWithValidation();
   const passwordField = useFormWithValidation();
 
+  function handleRegister(evt) {
+    evt.preventDefault();
+    onRegister(emailField.value, passwordField.value, nameField.value);
+  };
+
+  function handleClose() {
+    emailField.setErrorMessage('');
+    emailField.setValue('');
+    passwordField.setErrorMessage('');
+    passwordField.setValue('');
+    nameField.setErrorMessage('');
+    nameField.setValue('');
+    emailField.setIsValid(false);
+    passwordField.setIsValid(false);
+    nameField.setIsValid(false);
+    onClose();
+  };
+
   return (
     <PopupWithForm
       formName='registration'
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={handleClose}
       onChangeForm={onChangeForm}
       isFormValid={emailField.isValid && passwordField.isValid && nameField.isValid}
-      onSubmit={onRegister}
+      onSubmit={handleRegister}
+      authError={authError}
+      disabled={disabled}
       submitButtonText='Зарегистрироваться'>
       <legend className='popup__heading'>Регистрация</legend>
       <Input
@@ -28,6 +48,7 @@ export default function Register(props) {
         maxLength='30'
         type='email'
         required={true}
+        autoComplete='email'
         {...emailField}
         inputLabelClassName='popup__input-label'
         inputFieldClassName='popup__input'
@@ -40,6 +61,7 @@ export default function Register(props) {
         maxLength='30'
         type='password'
         required={true}
+        autoComplete='password'
         {...passwordField}
         inputLabelClassName='popup__input-label'
         inputFieldClassName='popup__input'

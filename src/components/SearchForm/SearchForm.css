@@ -35,6 +35,10 @@
   border-radius: 100px;
 }
 
+.search__input {
+  position: relative;
+}
+
 .search__input-field {
   font-size: 16px;
   padding: 0 24px;
@@ -43,6 +47,19 @@
 
 .search__input-field:focus {
   caret-color: var(--button-blue);
+}
+
+.search__input-error {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 24px;
+  font-size: 16px;
+  background-color: var(--main-bg-color);
+}
+
+.search__input-field:focus + .search__input-error {
+  display: none;
 }
 
 .search__button {

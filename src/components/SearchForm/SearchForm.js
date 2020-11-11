@@ -3,8 +3,16 @@ import Input from '../ui/Input/Input';
 import Button from '../ui/Button/Button';
 import { useFormWithValidation } from '../../utils/useFormWithValidation';
 
-export default function SearchForm() {
+export default function SearchForm(props) {
+  const { onSearch, isLoading } = props;
+
   const searchField = useFormWithValidation();
+
+  function handleSubmit(evt) {
+    const { value, setErrorMessage } = searchField;
+    evt.preventDefault();
+    onSearch(value, setErrorMessage);
+  };
 
   return (
     <div className='search'>
@@ -14,14 +22,18 @@ export default function SearchForm() {
           Находите самые свежие статьи на&nbsp;любую тему и&nbsp;сохраняйте в&nbsp;своём личном кабинете.</p>
       </div>
 
-      <form className='search__form'>
+      <form className='search__form' onSubmit={handleSubmit} noValidate>
         <Input
           name='search'
           type='text'
           {...searchField}
           placeholder='Введите тему новости'
-          inputFieldClassName='search__input-field' />
-        <Button buttonClassName='search__button'>Искать</Button>
+          disabled={isLoading}
+          inputFieldClassName='search__input-field'
+          inputLabelClassName='search__input' />
+        <Button
+          type='submit'
+          buttonClassName='search__button'>Искать</Button>
       </form>
 
     </div >

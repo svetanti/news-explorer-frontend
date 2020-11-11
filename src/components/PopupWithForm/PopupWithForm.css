@@ -3,7 +3,7 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: -1;
@@ -16,7 +16,6 @@
 }
 
 .popup_opened {
-  position: fixed;
   z-index: 10;
   pointer-events: auto;
   visibility: visible;
@@ -67,6 +66,10 @@
   margin: 0;
 }
 
+.popup__input-container:disabled {
+  color: var(--secondary-text-color);
+}
+
 .popup__heading {
   font-family: var(--roboto);
   font-size: 24px;
@@ -101,6 +104,19 @@
 
 .popup__input:focus {
   border-bottom: 1px solid var(--black);
+}
+
+.popup__error {
+  width: 90%;
+  height: 14px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 136px;
+  font-family: var(--inter);
+  font-size: 12px;
+  color: var(--red);
+  text-align: center;
 }
 
 .popup__submit {

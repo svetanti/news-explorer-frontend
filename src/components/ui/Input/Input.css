@@ -15,6 +15,10 @@
   outline: none;
 }
 
+.input__field:disabled {
+  color: var(--secondary-text-color);
+}
+
 .input__error {
   display: block;
   height: 24px;
